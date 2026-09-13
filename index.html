@@ -1,0 +1,492 @@
+মোবাইল, ট্যাবলেট এবং পিসি—সব ধরনের ডিভাইসে নিখুঁতভাবে ফিট হওয়ার জন্য রেসপন্সিভ সিএসএস (CSS) এবং মিডিয়া কোয়েরি (Media Queries) ব্যবহার করে কোডটি আপডেট করা হলো।
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জন্মদিনের উপহার - Birthday Gift</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 900px; /* পিসি এবং ল্যাপটপের জন্য চওড়া করা হয়েছে */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: clamp(20px, 4vw, 32px); /* স্ক্রিনের সাথে ফন্ট সাইজ মানানসই হবে */
+            font-weight: bold;
+            color: #ff1493;
+            text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493;
+            letter-spacing: 1px;
+            animation: headerGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes headerGlow {
+            0%, 100% { text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493; }
+            50% { text-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493; }
+        }
+
+        .main-container {
+            width: 100%;
+            height: 75vh;
+            min-height: 500px;
+            max-height: 800px;
+            border: 3px solid #ff1493;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #fff 0%, #ffe6f0 100%);
+            box-shadow: 0 0 30px #ff1493, inset 0 0 20px rgba(255, 20, 147, 0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .animation-scene {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .animation-scene.active {
+            display: flex;
+        }
+
+        /* Scene 1: Gift Box */
+        .gift-box-container {
+            perspective: 1000px;
+            width: clamp(120px, 15vw, 180px);
+            height: clamp(120px, 15vw, 180px);
+        }
+
+        .gift-box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: giftOpen 3s ease-in-out forwards;
+        }
+
+        .gift-body {
+            width: 100%;
+            height: 65%;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .gift-lid {
+            width: 100%;
+            height: 35%;
+            background: linear-gradient(135deg, #ff69b4 0%, #ffb6c1 100%);
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: center bottom;
+            transform-style: preserve-3d;
+            animation: lidOpen 3s ease-in-out forwards;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-ribbon {
+            width: 90%;
+            height: 8px;
+            background: #ffd700;
+            position: absolute;
+            top: 45%;
+            left: 5%;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-bow {
+            width: 25%;
+            height: 25%;
+            background: #ffd700;
+            border-radius: 50%;
+            position: absolute;
+            top: -10%;
+            left: 37.5%;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes lidOpen {
+            0% { transform: rotateX(0deg); }
+            100% { transform: rotateX(-120deg); }
+        }
+
+        @keyframes giftOpen {
+            0% { opacity: 0; scale: 0.5; }
+            20% { opacity: 1; scale: 1; }
+            80% { opacity: 1; scale: 1; }
+            100% { opacity: 0; scale: 1; }
+        }
+
+        /* Scene 2: Balloons & Banner */
+        .balloons-banner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .balloon {
+            width: clamp(40px, 6vw, 70px);
+            height: clamp(55px, 8vw, 95px);
+            border-radius: 50% 50% 50% 0;
+            position: absolute;
+            opacity: 0;
+            animation: floatUp 4s ease-in forwards;
+        }
+
+        .balloon-1 { background: #ff1493; left: 15%; animation-delay: 0s; }
+        .balloon-2 { background: #ff69b4; left: 30%; animation-delay: 0.3s; }
+        .balloon-3 { background: #ffd700; left: 47%; animation-delay: 0.6s; }
+        .balloon-4 { background: #00bfff; left: 65%; animation-delay: 0.9s; }
+        .balloon-5 { background: #ff1493; left: 80%; animation-delay: 1.2s; }
+
+        .balloon::before {
+            content: '';
+            width: 2px;
+            height: 50px;
+            background: #333;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-1px);
+        }
+
+        @keyframes floatUp {
+            0% { bottom: -100px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { bottom: 100%; opacity: 0; }
+        }
+
+        .banner {
+            font-size: clamp(28px, 6vw, 60px);
+            font-weight: bold;
+            color: #ff1493;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: bannerDrop 3s ease-out forwards;
+            animation-delay: 1s;
+            text-align: center;
+            letter-spacing: 2px;
+            position: absolute;
+            width: 100%;
+            top: 40%;
+        }
+
+        @keyframes bannerDrop {
+            0% { opacity: 0; transform: translateY(-50px); }
+            50% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(0); }
+        }
+
+        /* Scene 3: Romantic Letter */
+        .letter-container {
+            width: 90%;
+            max-width: 550px; /* ল্যাপটপ/পিসির জন্য লেটার বক্স বড় করা হয়েছে */
+            animation: letterOpen 0.8s ease-out forwards;
+        }
+
+        .envelope {
+            background: linear-gradient(135deg, #fff 0%, #ffe6f0 100%);
+            border: 2px solid #ff1493;
+            border-radius: 15px;
+            padding: clamp(20px, 4vw, 40px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .envelope-header {
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: 20px;
+        }
+
+        .letter-content {
+            font-size: clamp(14px, 2.5vw, 20px);
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+            text-align: center;
+            animation: textReveal 2s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes letterOpen {
+            0% { opacity: 0; scale: 0.8; }
+            100% { opacity: 1; scale: 1; }
+        }
+
+        @keyframes textReveal {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .letter-signature {
+            font-size: clamp(14px, 2.5vw, 18px);
+            color: #ff1493;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: textReveal 2s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        /* Scene 4: Closing Message */
+        .closing-scene {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .closing-text {
+            font-size: clamp(28px, 6vw, 55px);
+            font-weight: bold;
+            color: #ff1493;
+            text-align: center;
+            text-shadow: 0 0 20px #ff1493;
+            animation: closingGlow 3s ease-in-out infinite;
+            letter-spacing: 1px;
+            padding: 0 20px;
+            line-height: 1.4;
+        }
+
+        @keyframes closingGlow {
+            0%, 100% { 
+                text-shadow: 0 0 20px #ff1493, 0 0 30px #ff1493;
+                scale: 1;
+            }
+            50% { 
+                text-shadow: 0 0 40px #ff1493, 0 0 60px #ff1493;
+                scale: 1.05;
+            }
+        }
+
+        .heart-rain {
+            position: absolute;
+            font-size: clamp(20px, 4vw, 40px);
+            animation: heartFall 3s ease-in forwards;
+            opacity: 0;
+        }
+
+        @keyframes heartFall {
+            0% { 
+                top: -40px;
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+            100% { 
+                top: 100%;
+                opacity: 0;
+                transform: translateX(40px) rotate(180deg);
+            }
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            color: white;
+            border: none;
+            padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 40px);
+            font-size: clamp(14px, 2vw, 18px);
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+            transition: all 0.3s ease;
+            position: absolute;
+            bottom: clamp(15px, 3vw, 30px);
+            right: clamp(15px, 3vw, 30px);
+            font-weight: bold;
+            display: none;
+            z-index: 10;
+        }
+
+        .next-btn.show {
+            display: block;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
+        }
+
+        .next-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* মোবাইলের জন্য নির্দিষ্ট স্টাইল (Media Queries) */
+        @media (max-width: 600px) {
+            .main-container {
+                border-width: 2px;
+                height: 85vh; /* মোবাইলে লম্বাটে দেখানোর জন্য */
+                box-shadow: 0 0 20px #ff1493, inset 0 0 15px rgba(255, 20, 147, 0.1);
+            }
+            .header-text {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="header-text">
+            ❤️ ভালোবাসায় ভরা একটি birthday উপহার ❤️<br>
+            A Birthday Gift for you
+        </div>
+
+        <div class="main-container">
+            <!-- Scene 1: Gift Box -->
+            <div class="animation-scene active" id="scene1">
+                <div class="gift-box-container">
+                    <div class="gift-box">
+                        <div class="gift-body">
+                            <div class="gift-ribbon"></div>
+                            <div class="gift-bow"></div>
+                        </div>
+                        <div class="gift-lid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 2: Balloons & Banner -->
+            <div class="animation-scene" id="scene2">
+                <div class="balloons-banner">
+                    <div class="balloon balloon-1"></div>
+                    <div class="balloon balloon-2"></div>
+                    <div class="balloon balloon-3"></div>
+                    <div class="balloon balloon-4"></div>
+                    <div class="balloon balloon-5"></div>
+                    <div class="banner">শুভ birthday</div>
+                </div>
+            </div>
+
+            <!-- Scene 3: Romantic Letter -->
+            <div class="animation-scene" id="scene3">
+                <div class="letter-container">
+                    <div class="envelope">
+                        <div class="envelope-header">💌</div>
+                        <div class="letter-content">
+                            প্রিয়, আমার জীবনে আসার পর থেকে তুমি আমার পুরো পৃথিবীটাকে সবচেয়ে সুন্দরভাবে পাল্টে দিয়েছ। তোমার হাসি আমার প্রতিটি দিনকে উজ্জ্বল করে তোলে এবং তোমার ভালোবাসা আমাকে শক্তি দেয়। এই birthday তে, আমি শুধু বলতে চাই যে তুমি আমার সবচেয়ে বড় আশীর্বাদ এবং আমি সারাজীবন তোমার পাশে থাকতে চাই।
+                        </div>
+                        <div class="letter-signature">
+                            সবসময় তোমার ভালোবাসা দিয়ে 💕
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 4: Closing Message -->
+            <div class="animation-scene" id="scene4">
+                <div class="closing-scene">
+                    <div class="closing-text">
+                        শুভ birthday<br>আমার ভালোবাসা ❤️
+                    </div>
+                </div>
+            </div>
+
+            <button class="next-btn" id="nextBtn">পরবর্তী →</button>
+        </div>
+    </div>
+
+    <script>
+        const scenes = [
+            { id: 'scene1', duration: 4000 },
+            { id: 'scene2', duration: 5000 },
+            { id: 'scene3', duration: 6000 },
+            { id: 'scene4', duration: 5000 }
+        ];
+
+        let currentScene = 0;
+        let autoPlayTimer;
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showScene(sceneIndex) {
+            scenes.forEach((scene) => {
+                const element = document.getElementById(scene.id);
+                element.classList.remove('active');
+            });
+
+            if (sceneIndex < scenes.length) {
+                const element = document.getElementById(scenes[sceneIndex].id);
+                element.classList.add('active');
+
+                if (sceneIndex === 3) {
+                    addHeartRain();
+                }
+
+                if (sceneIndex < scenes.length - 1) {
+                    nextBtn.classList.add('show');
+                } else {
+                    nextBtn.classList.remove('show');
+                }
+
+                clearTimeout(autoPlayTimer);
+                autoPlayTimer = setTimeout(() => {
+                    if (currentScene < scenes.length - 1) {
+                        currentScene++;
+                        showScene(currentScene);
+                    }
+                }, scenes[sceneIndex].duration);
+            }
+        }
+
+        function addHeartRain() {
+            const scene4 = document.getElementById('scene4');
+            const hearts = ['❤️', '💕', '💖', '💗', '💓'];
+
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-rain';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 95 + '%';
+                    heart.style.animationDelay = Math.random() * 1 + 's';
+                    scene4.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 3500);
+                }, i * 150);
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            clearTimeout(autoPlayTimer);
+            if (currentScene < scenes.length - 1) {
+                currentScene++;
+                showScene(currentScene);
+            }
+        });
+
+        showScene(0);
+    </script>
+</body>
+</html>
+
