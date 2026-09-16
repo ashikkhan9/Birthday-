@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday, My World</title>
-    <!-- Premium Romantic & Vintage Fonts -->
+    <!-- Premium Romantic & Elegant Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700&family=Galada&family=Hind+Siliguri:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Vintage Parchment & Rose Gold Palette matching the image */
-            --bg-deep: #1a0d0e; 
-            --bg-glow: #421820; 
-            --rose-gold: #e29578; 
-            --rose-dark: #a55d65;
+            /* Deep Velvet Rose & Champagne Gold Palette */
+            --bg-deep: #120408; /* Ultra deep burgundy/black */
+            --bg-glow: #3d0c1a; /* Rich velvet crimson glow */
+            --gold-light: #fbe6c2; 
             --gold-main: #dfb868; 
-            --parchment: #f4ebd0;
+            --rose-gold: #f4c2c2;
+            --rose-dark: #b56576;
             --pearl: #fff5f0;
         }
 
@@ -35,24 +35,20 @@
         .font-anek { font-family: 'Anek Bangla', sans-serif; }
         .font-vibes { font-family: 'Great Vibes', cursive; letter-spacing: 2px; }
         
-        .grad-rose {
-            background: linear-gradient(135deg, #ffb5a7 0%, #fcd5ce 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 12px rgba(226, 149, 120, 0.4));
-        }
         .grad-gold {
-            background: linear-gradient(to right, #f9e5b5, #dfb868);
+            background: linear-gradient(to right, #fbe6c2, #dfb868);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(223, 184, 104, 0.3));
         }
-        .grad-vintage {
-            background: linear-gradient(to right, #f4ebd0, #dfb868);
+        .grad-rose {
+            background: linear-gradient(135deg, #ffdde1 0%, #f4c2c2 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 12px rgba(223, 184, 104, 0.3));
+            filter: drop-shadow(0 0 10px rgba(244, 194, 194, 0.3));
         }
 
         /* --- Smooth Animations --- */
         .scene.active .anim-fade-up { animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; opacity: 0; }
-        .scene.active .anim-pop-in { animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
+        .scene.active .anim-pop-in { animation: popIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.3s !important; }
         .delay-2 { animation-delay: 0.6s !important; }
         
@@ -61,28 +57,30 @@
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
         @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.8); }
+            0% { opacity: 0; transform: scale(0.85); }
             100% { opacity: 1; transform: scale(1); }
         }
 
-        /* Ambient Audio Toggle & Cursor */
+        /* Ambient Audio Toggle */
         .audio-toggle {
-            position: absolute; top: 20px; right: 20px; width: 40px; height: 40px;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--gold-main); border-radius: 50%;
+            position: absolute; top: 20px; right: 20px; width: 45px; height: 45px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(223, 184, 104, 0.4); border-radius: 50%;
             display: flex; justify-content: center; align-items: center; color: var(--gold-main);
-            font-size: 18px; cursor: pointer; z-index: 1000; backdrop-filter: blur(5px); display: none;
+            font-size: 20px; cursor: pointer; z-index: 1000; backdrop-filter: blur(10px); display: none;
         }
+
+        /* Touch Ripple */
         .touch-ripple {
-            position: absolute; width: 15px; height: 15px; border: 2px solid var(--gold-main);
+            position: absolute; width: 15px; height: 15px; border: 2px solid var(--rose-gold);
             border-radius: 50%; pointer-events: none; z-index: 9999; animation: rippleExpand 0.7s ease-out forwards;
         }
         @keyframes rippleExpand { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(5); opacity: 0; } }
 
         /* Background Particles */
         #particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .stardust { position: absolute; background: var(--gold-main); border-radius: 50%; opacity: 0; animation: starFloat 10s infinite linear, starGlow 4s infinite alternate; }
-        @keyframes starFloat { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 20%, 80% { opacity: 0.6; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
-        @keyframes starGlow { 0% { box-shadow: 0 0 2px var(--gold-main); } 100% { box-shadow: 0 0 10px var(--gold-main), 0 0 20px var(--parchment); } }
+        .stardust { position: absolute; background: var(--rose-gold); border-radius: 50%; opacity: 0; animation: starFloat 10s infinite linear, starGlow 4s infinite alternate; }
+        @keyframes starFloat { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 20%, 80% { opacity: 0.5; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
+        @keyframes starGlow { 0% { box-shadow: 0 0 2px var(--rose-gold); } 100% { box-shadow: 0 0 10px var(--rose-gold), 0 0 20px var(--pearl); } }
 
         /* Scene Layout */
         .scene {
@@ -95,109 +93,125 @@
 
         /* Common Buttons */
         .btn {
-            background: rgba(223, 184, 104, 0.08); border: 1px solid var(--gold-main); color: var(--gold-main);
-            padding: clamp(10px, 2vw, 15px) clamp(25px, 4vw, 40px); font-size: clamp(14px, 2vw, 18px);
-            font-family: 'Hind Siliguri', sans-serif; border-radius: 30px; cursor: pointer; transition: 0.4s;
+            background: rgba(223, 184, 104, 0.08); border: 1px solid rgba(223, 184, 104, 0.6); 
+            color: var(--gold-main); padding: clamp(12px, 2.5vw, 15px) clamp(30px, 5vw, 45px); 
+            font-size: clamp(15px, 2.5vw, 18px); font-family: 'Hind Siliguri', sans-serif; 
+            border-radius: 40px; cursor: pointer; transition: all 0.4s ease;
             margin-top: 30px; z-index: 50; font-weight: 600; letter-spacing: 1px; backdrop-filter: blur(5px);
         }
-        .btn:hover { background: var(--gold-main); color: var(--bg-deep); transform: scale(1.05); box-shadow: 0 5px 15px rgba(223, 184, 104, 0.3); }
+        .btn:hover { background: var(--gold-main); color: var(--bg-deep); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(223, 184, 104, 0.3); }
 
-        /* Lock Screen - Clean Vintage Style */
-        .lock-box { background: rgba(30, 15, 18, 0.5); padding: clamp(30px, 5vw, 40px); border-radius: 20px; border: 1px solid rgba(223, 184, 104, 0.25); backdrop-filter: blur(10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .lock-box input { background: transparent; border: none; border-bottom: 2px solid var(--gold-main); color: var(--parchment); font-size: 28px; text-align: center; padding: 10px; margin: 15px 0; outline: none; width: 160px; letter-spacing: 8px; transition: 0.3s; }
-        .lock-box input:focus { border-color: var(--rose-gold); }
-        .shake { animation: shake 0.5s; border-color: #ff4d4d !important; }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+        /* --- THE FIXED LOCK SCREEN (Premium Glassmorphism) --- */
+        .lock-box { 
+            background: rgba(255, 255, 255, 0.03); /* Ultra clear glass effect */
+            padding: clamp(35px, 6vw, 50px); 
+            border-radius: 24px; 
+            border: 1px solid rgba(223, 184, 104, 0.25); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02); 
+            width: 100%; max-width: 420px;
+        }
+        .lock-box input { 
+            background: rgba(0,0,0,0.2); border: 1px solid rgba(223, 184, 104, 0.3); 
+            color: var(--gold-main); font-size: 28px; text-align: center; 
+            padding: 12px; margin: 20px 0; border-radius: 12px; width: 180px; 
+            letter-spacing: 12px; transition: 0.3s; font-weight: bold;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .lock-box input:focus { border-color: var(--gold-light); outline: none; box-shadow: 0 0 15px rgba(223, 184, 104, 0.2), inset 0 2px 10px rgba(0,0,0,0.3); }
+        .shake { animation: shakeError 0.5s; border-color: #ff4d4d !important; }
+        @keyframes shakeError { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
 
         /* Cute Art */
-        .cute-art { margin-bottom: 20px; width: clamp(150px, 20vw, 180px); animation: floatArt 4s ease-in-out infinite; }
-        @keyframes floatArt { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .cute-art { margin-bottom: 20px; width: clamp(150px, 20vw, 180px); animation: floatArt 4s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4)); }
+        @keyframes floatArt { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
         /* Scanner */
-        .scanner-box { position: relative; width: 120px; height: 150px; margin: 20px auto; display: flex; justify-content: center; align-items: center; border: 2px dashed var(--gold-main); border-radius: 20px; cursor: pointer; overflow: hidden; background: rgba(0,0,0,0.2); }
-        .fingerprint { font-size: 60px; color: rgba(223, 184, 104, 0.4); transition: 0.3s; }
+        .scanner-box { position: relative; width: 130px; height: 160px; margin: 25px auto; display: flex; justify-content: center; align-items: center; border: 2px dashed rgba(223, 184, 104, 0.4); border-radius: 25px; cursor: pointer; overflow: hidden; background: rgba(255,255,255,0.02); }
+        .fingerprint { font-size: 65px; color: rgba(223, 184, 104, 0.3); transition: 0.3s; }
         .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--rose-gold); box-shadow: 0 0 15px var(--rose-gold); display: none; animation: scanMove 1.5s infinite linear; }
-        @keyframes scanMove { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
+        @keyframes scanMove { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
 
         /* Counter Grid */
-        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2.5vw, 20px); margin-top: 15px; width: 100%; max-width: 600px; }
-        .counter-box { background: rgba(255,255,255,0.03); padding: clamp(12px, 2.5vw, 20px); border-radius: 12px; border: 1px solid rgba(223, 184, 104, 0.2); transition: 0.3s; backdrop-filter: blur(5px); }
-        .counter-box:hover { transform: translateY(-3px); border-color: var(--gold-main); }
-        .counter-num { font-size: clamp(20px, 4.5vw, 30px); color: var(--gold-main); font-weight: bold; font-family: 'Anek Bangla', sans-serif;}
-        .counter-label { font-size: clamp(11px, 1.5vw, 14px); color: var(--parchment); font-family: 'Hind Siliguri', sans-serif;}
+        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2.5vw, 20px); margin-top: 20px; width: 100%; max-width: 600px; }
+        .counter-box { background: rgba(255,255,255,0.03); padding: clamp(15px, 3vw, 20px); border-radius: 14px; border: 1px solid rgba(223, 184, 104, 0.15); transition: 0.3s; backdrop-filter: blur(8px); }
+        .counter-box:hover { transform: translateY(-3px); border-color: rgba(223, 184, 104, 0.4); }
+        .counter-num { font-size: clamp(22px, 4.5vw, 32px); color: var(--gold-main); font-weight: bold; font-family: 'Anek Bangla', sans-serif;}
+        .counter-label { font-size: clamp(12px, 1.5vw, 15px); color: var(--pearl); opacity: 0.8; font-family: 'Hind Siliguri', sans-serif;}
 
         /* Magic Gift Box */
         .magic-box-container { margin: 30px auto; cursor: pointer; transition: transform 0.2s; animation: gentlePulse 2s infinite alternate; }
         .magic-box-container:active { transform: scale(0.9); }
-        @keyframes gentlePulse { 0% { filter: drop-shadow(0 0 10px rgba(223,184,104,0.3)); } 100% { filter: drop-shadow(0 0 25px rgba(223,184,104,0.7)); } }
+        @keyframes gentlePulse { 0% { filter: drop-shadow(0 0 10px rgba(223,184,104,0.2)); } 100% { filter: drop-shadow(0 0 30px rgba(223,184,104,0.6)); } }
         
-        .wish-popup { position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); background: #261014; color: var(--parchment); padding: 20px; border-radius: 14px; width: 285px; text-align: center; font-size: 16px; font-family: 'Anek Bangla', sans-serif; font-weight: 500; opacity: 0; pointer-events: none; transition: 0.5s; box-shadow: 0 20px 40px rgba(0,0,0,0.7); z-index: 100; border: 1px solid var(--gold-main); }
+        .wish-popup { position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); background: rgba(26, 13, 17, 0.95); color: var(--gold-light); padding: 25px 20px; border-radius: 16px; width: 290px; text-align: center; font-size: 16px; font-family: 'Anek Bangla', sans-serif; font-weight: 500; line-height: 1.5; opacity: 0; pointer-events: none; transition: 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 100; border: 1px solid rgba(223, 184, 104, 0.4); }
         .wish-popup.show { opacity: 1; transform: translate(-50%, -75%); }
 
-        /* Premium Envelope Update - Vintage Scroll Background */
+        /* Premium Envelope */
         .envelope-wrapper { 
-            position: relative; width: clamp(260px, 75vw, 420px); height: clamp(160px, 45vw, 260px); 
-            background: #36141b; cursor: pointer; border-radius: 8px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 25px rgba(223, 184, 104, 0.2); 
-            transition: 0.5s; margin-top: 20px; 
+            position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); 
+            background: #2a0b12; cursor: pointer; border-radius: 10px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 25px rgba(223, 184, 104, 0.15); 
+            transition: 0.5s; margin-top: 25px; 
         }
         .envelope-flap { 
             position: absolute; top: 0; left: 0; width: 100%; height: 60%; 
-            background: linear-gradient(135deg, #742332, #4a131e); 
+            background: linear-gradient(135deg, #741d2d, #4a101b); 
             clip-path: polygon(0 0, 100% 0, 50% 100%); 
             transform-origin: top; transition: 1s cubic-bezier(0.4, 0, 0.2, 1); z-index: 4; 
-            border-bottom: 2px solid rgba(223, 184, 104, 0.3);
+            border-bottom: 2px solid rgba(223, 184, 104, 0.2);
         }
         .envelope-front { 
             position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; 
-            background: linear-gradient(to top, #4a131e, #742332); 
+            background: linear-gradient(to top, #4a101b, #741d2d); 
             clip-path: polygon(0 100%, 0 0, 50% 65%, 100% 0, 100% 100%); 
-            z-index: 3; border-radius: 0 0 8px 8px; 
+            z-index: 3; border-radius: 0 0 10px 10px; 
         }
         
-        /* SCROLL IMAGE BACKGROUND APPLIED HERE */
+        /* 7676.jpg VINTAGE SCROLL BG */
         .letter { 
-            position: absolute; bottom: 5px; left: 10px; width: calc(100% - 20px); height: 95%; 
+            position: absolute; bottom: 8px; left: 12px; width: calc(100% - 24px); height: 95%; 
             background: url('7676.jpg') no-repeat center center / cover; 
             z-index: 2; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
-            padding: clamp(55px, 12vh, 75px) clamp(20px, 4vw, 30px) clamp(70px, 15vh, 95px) clamp(20px, 4vw, 30px); 
-            color: #3b1b1b; border-radius: 5px 5px 0 0; 
+            padding: clamp(60px, 12vh, 80px) clamp(20px, 4vw, 30px) clamp(70px, 15vh, 95px) clamp(20px, 4vw, 30px); 
+            color: #3b1b1b; border-radius: 6px 6px 0 0; 
             overflow-y: auto; text-align: center; display: flex; align-items: center; justify-content: center;
-            box-shadow: inset 0 0 20px rgba(139, 69, 19, 0.2);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
         }
         
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; opacity: 0; }
-        .envelope-wrapper.open .letter { transform: translateY(clamp(-50%, -10vw, -70%)); z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.5); }
-        #typewriter-text { font-size: clamp(13px, 2.5vw, 16px); line-height: 1.6; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; font-weight: 700; color: #2d1515; text-shadow: 0 0 1px rgba(255,255,255,0.8); }
+        .envelope-wrapper.open .letter { transform: translateY(clamp(-50%, -10vw, -70%)); z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.6); }
+        #typewriter-text { font-size: clamp(14px, 2.5vw, 17px); line-height: 1.7; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; font-weight: 700; color: #2d1515; }
 
         /* Quiz */
-        .quiz-box { background: rgba(30, 15, 18, 0.4); border: 1px solid rgba(223, 184, 104, 0.2); padding: clamp(20px, 4vw, 35px); border-radius: 16px; width: 100%; max-width: 500px; backdrop-filter: blur(8px); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
-        .quiz-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(223, 184, 104, 0.25); color: var(--pearl); padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.3s; margin-top: 12px; width: 100%; font-family: 'Hind Siliguri', sans-serif; font-size: 16px; }
+        .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(223, 184, 104, 0.2); padding: clamp(25px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 500px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .quiz-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(223, 184, 104, 0.3); color: var(--pearl); padding: 14px; border-radius: 12px; cursor: pointer; transition: 0.3s; margin-top: 15px; width: 100%; font-family: 'Hind Siliguri', sans-serif; font-size: 16px; }
         .quiz-btn:hover { background: rgba(223, 184, 104, 0.15); border-color: var(--gold-main); color: var(--gold-main); transform: translateX(5px); }
 
         /* Glowing Magic Heart */
         .magic-heart-container { position: relative; margin: 40px auto; cursor: pointer; animation: pulseHeart 1.5s infinite alternate; }
-        .magic-heart { font-size: clamp(65px, 15vw, 100px); filter: drop-shadow(0 0 20px rgba(226, 149, 120, 0.6)); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
-        .fly-heart { transform: scale(3) translateY(-20px); opacity: 0; filter: drop-shadow(0 0 50px rgba(226, 149, 120, 1)) blur(5px); }
-        @keyframes pulseHeart { 0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(226, 149, 120, 0.4)); } 100% { transform: scale(1.1); filter: drop-shadow(0 0 35px rgba(226, 149, 120, 1)); } }
+        .magic-heart { font-size: clamp(70px, 15vw, 110px); filter: drop-shadow(0 0 25px rgba(244, 194, 194, 0.5)); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .fly-heart { transform: scale(3) translateY(-20px); opacity: 0; filter: drop-shadow(0 0 60px rgba(244, 194, 194, 1)) blur(5px); }
+        @keyframes pulseHeart { 0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(244, 194, 194, 0.3)); } 100% { transform: scale(1.1); filter: drop-shadow(0 0 40px rgba(244, 194, 194, 0.8)); } }
 
         /* Video Cake */
         .cake-video { 
-            width: 100%; max-width: 260px; min-height: 250px; height: auto; 
-            border-radius: 16px; border: 2px solid rgba(223, 184, 104, 0.4); 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 25px rgba(223, 184, 104, 0.2); 
-            margin: 30px auto; cursor: pointer; object-fit: cover;
-            background: rgba(0,0,0,0.3) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="%23dfb868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>') no-repeat center; 
+            width: 100%; max-width: 280px; min-height: 280px; height: auto; 
+            border-radius: 18px; border: 2px solid rgba(223, 184, 104, 0.4); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(223, 184, 104, 0.15); 
+            margin: 35px auto; cursor: pointer; object-fit: cover;
+            background: rgba(0,0,0,0.4) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="%23dfb868" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>') no-repeat center; 
         }
         
         /* Voice Note */
-        .voice-btn { width: 85px; height: 85px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-main), var(--rose-gold)); display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 30px auto; box-shadow: 0 8px 25px rgba(223, 184, 104, 0.4); font-size: 32px; color: var(--bg-deep); transition: 0.3s; padding-left: 5px; }
+        .voice-btn { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold-main)); display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 30px auto; box-shadow: 0 10px 30px rgba(223, 184, 104, 0.3); font-size: 35px; color: var(--bg-deep); transition: 0.3s; padding-left: 5px; }
         .voice-btn:active { transform: scale(0.9); }
 
         /* Scratch Card */
-        .scratch-container { position: relative; width: clamp(260px, 80vw, 420px); height: clamp(160px, 50vw, 260px); margin: 0 auto; border-radius: 18px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
-        .scratch-content { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #36141b, #1a0d0e); border: 2px solid rgba(223, 184, 104, 0.4); border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--gold-main); text-align: center; padding: 15px; }
-        canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 18px; z-index: 2; cursor: pointer; }
+        .scratch-container { position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); margin: 0 auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+        .scratch-content { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #2a0b12, #120408); border: 2px solid rgba(223, 184, 104, 0.4); border-radius: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--gold-main); text-align: center; padding: 20px; }
+        canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; z-index: 2; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -209,13 +223,13 @@
     <div class="audio-toggle" id="audioToggle" onclick="toggleMute()">🎵</div>
     <div id="particles"></div>
 
-    <!-- 1. Lock Screen -->
+    <!-- 1. Lock Screen (Fixed Premium Glassmorphism) -->
     <div class="scene active" id="scene0">
         <div class="lock-box anim-pop-in">
-            <h2 class="font-galada grad-vintage" style="font-size: clamp(26px, 6vw, 36px); margin-bottom: 5px;">আমাদের গোপন দুনিয়া ✨</h2>
-            <p class="font-anek" style="font-size: 15px; color: var(--parchment); margin-bottom: 20px; opacity: 0.85;">প্রবেশ করতে আমাদের ভালোবাসার পিনটি দাও...</p>
+            <h2 class="font-galada grad-gold" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">আমাদের গোপন দুনিয়া ✨</h2>
+            <p class="font-anek" style="font-size: 16px; color: var(--rose-gold); margin-bottom: 25px; opacity: 0.9;">প্রবেশ করতে আমাদের ভালোবাসার পিনটি দাও...</p>
             <input type="password" id="pinInput" maxlength="4" placeholder="••••">
-            <br><button class="btn" onclick="checkPin()">আনলক করো</button>
+            <br><button class="btn" onclick="checkPin()" style="width: 100%;">আনলক করো</button>
         </div>
     </div>
 
@@ -225,31 +239,31 @@
             <path d="M50 70 C 40 70, 30 60, 30 50 C 30 40, 40 30, 50 30 C 60 30, 70 40, 70 50 C 70 60, 60 70, 50 70 Z" fill="none" stroke="#dfb868" stroke-width="3"/>
             <path d="M150 70 C 140 70, 130 60, 130 50 C 130 40, 140 30, 150 30 C 160 30, 170 40, 170 50 C 170 60, 160 70, 150 70 Z" fill="none" stroke="#dfb868" stroke-width="3"/>
             <path d="M50 90 L 50 70 M 150 90 L 150 70" stroke="#dfb868" stroke-width="3" stroke-linecap="round"/>
-            <path d="M100 60 C 100 60, 85 45, 95 35 C 100 30, 105 35, 105 35 C 105 35, 110 30, 115 35 C 125 45, 100 60, 100 60 Z" fill="#e29578">
-                <animate attributeName="transform" type="translate" values="0,0; 0,-5; 0,0" dur="2s" repeatCount="indefinite" />
+            <path d="M100 60 C 100 60, 85 45, 95 35 C 100 30, 105 35, 105 35 C 105 35, 110 30, 115 35 C 125 45, 100 60, 100 60 Z" fill="#b56576">
+                <animate attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="2.5s" repeatCount="indefinite" />
             </path>
         </svg>
-        <h1 class="font-galada grad-vintage anim-fade-up delay-1" style="font-size: clamp(30px, 6vw, 42px); margin-bottom: 15px;">কিছু গল্প তারার চেয়েও সুন্দর...</h1>
+        <h1 class="font-galada grad-gold anim-fade-up delay-1" style="font-size: clamp(32px, 6vw, 45px); margin-bottom: 15px;">কিছু গল্প তারার চেয়েও সুন্দর...</h1>
         <p class="font-anek grad-rose anim-fade-up delay-2" style="font-size: clamp(16px, 3vw, 20px);">"অচেনা একটা পথ আজ আমাদের ঠিকানা"</p>
         <button class="btn anim-pop-in delay-2" onclick="nextScene(1)">গল্পটা শুরু হোক</button>
     </div>
 
     <!-- 3. Love Scanner -->
     <div class="scene" id="scene2">
-        <h2 class="font-hind grad-vintage anim-fade-up" style="font-size: clamp(26px, 5vw, 36px); margin-bottom: 15px;">আমাদের মনের মিল কতটুকু?</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--parchment); font-size: clamp(14px, 3vw, 18px); margin-bottom: 25px; opacity: 0.85;">"বক্সের ভেতর আঙুল ছুঁয়ে থাকো..."</p>
+        <h2 class="font-hind grad-gold anim-fade-up" style="font-size: clamp(28px, 5vw, 38px); margin-bottom: 15px;">আমাদের মনের মিল কতটুকু?</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--rose-gold); font-size: clamp(15px, 3vw, 18px); margin-bottom: 30px; opacity: 0.9;">"বক্সের ভেতর আঙুল ছুঁয়ে থাকো..."</p>
         <div class="scanner-box anim-pop-in delay-2" id="scannerBox">
             <div class="fingerprint">👆</div>
             <div class="scan-line" id="scanLine"></div>
         </div>
-        <div class="scan-progress font-hind anim-fade-up delay-2" id="scanProgress" style="color: var(--gold-main);">0%</div>
+        <div class="scan-progress font-hind anim-fade-up delay-2" id="scanProgress" style="color: var(--gold-main); font-size: 20px;">0%</div>
         <button class="btn" id="btnScene2" onclick="nextScene(2)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
     <!-- 4. Counter -->
     <div class="scene" id="scene3">
-        <h2 class="font-galada grad-vintage anim-pop-in" style="font-size: clamp(28px, 6vw, 40px); margin-bottom: 10px;">একসাথে কাটানো সময়...</h2>
-        <p class="font-hind anim-fade-up delay-1" style="color: var(--parchment); font-size: clamp(14px, 3vw, 16px); font-style: italic; opacity: 0.85;">"প্রতিটি মুহূর্ত যেন শতাব্দীর সমান মূল্যবান"</p>
+        <h2 class="font-galada grad-rose anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-bottom: 10px;">একসাথে কাটানো সময়...</h2>
+        <p class="font-hind anim-fade-up delay-1" style="color: var(--pearl); font-size: clamp(15px, 3vw, 18px); font-style: italic; opacity: 0.85;">"প্রতিটি মুহূর্ত যেন শতাব্দীর সমান মূল্যবান"</p>
         <div class="counter-grid anim-fade-up delay-2">
             <div class="counter-box"><div class="counter-num" id="c-years">0</div><div class="counter-label">বছর</div></div>
             <div class="counter-box"><div class="counter-num" id="c-months">0</div><div class="counter-label">মাস</div></div>
@@ -263,40 +277,40 @@
 
     <!-- 5. Magic Gift Box -->
     <div class="scene" id="scene4">
-        <h2 class="font-hind grad-vintage anim-fade-up" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 10px;">ম্যাজিক উপহার ✨</h2>
-        <p class="font-anek grad-rose anim-fade-up delay-1" style="font-size: clamp(14px, 3vw, 16px);">"বক্সটিতে ট্যাপ করো আর দেখো তোমার জন্য কী লেখা আছে"</p>
+        <h2 class="font-hind grad-gold anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px;">ম্যাজিক উপহার ✨</h2>
+        <p class="font-anek grad-rose anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে ট্যাপ করো আর দেখো তোমার জন্য কী লেখা আছে"</p>
         
         <div class="magic-box-container anim-pop-in delay-2" onclick="showWish()">
-            <svg width="140" height="140" viewBox="0 0 100 100">
+            <svg width="150" height="150" viewBox="0 0 100 100">
                 <defs>
                     <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#a55d65" />
-                        <stop offset="100%" stop-color="#5a242c" />
+                        <stop offset="0%" stop-color="#b56576" />
+                        <stop offset="100%" stop-color="#741d2d" />
                     </linearGradient>
                     <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#f9e5b5" />
+                        <stop offset="0%" stop-color="#fbe6c2" />
                         <stop offset="100%" stop-color="#dfb868" />
                     </linearGradient>
                 </defs>
-                <rect x="20" y="45" width="60" height="45" rx="4" fill="url(#boxGrad)"/>
+                <rect x="20" y="45" width="60" height="45" rx="5" fill="url(#boxGrad)"/>
                 <rect x="46" y="45" width="8" height="45" fill="#fff" opacity="0.3"/>
-                <rect x="15" y="32" width="70" height="13" rx="3" fill="url(#lidGrad)"/>
+                <rect x="15" y="32" width="70" height="14" rx="4" fill="url(#lidGrad)"/>
                 <path d="M 50 32 C 30 15, 20 35, 45 32 Z" fill="#dfb868"/>
                 <path d="M 50 32 C 70 15, 80 35, 55 32 Z" fill="#dfb868"/>
             </svg>
         </div>
         
         <div class="wish-popup" id="wishPopup">
-            <div style="font-size:24px; margin-bottom:5px;">✨</div>
+            <div style="font-size:26px; margin-bottom:8px; text-shadow: 0 0 10px var(--gold-main);">✨</div>
             <span id="wishText"></span>
         </div>
         <button class="btn" id="btnScene4" onclick="nextScene(4)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 6. Envelope (WITH 7676.jpg VINTAGE SCROLL BG) -->
+    <!-- 6. Envelope (7676.jpg) -->
     <div class="scene" id="scene5">
-        <h2 class="font-galada grad-vintage anim-pop-in" style="font-size: clamp(28px, 6vw, 40px);">তোমার জন্য কিছু কথা...</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--parchment); margin-bottom: 20px; font-size: 16px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
+        <h2 class="font-galada grad-gold anim-pop-in" style="font-size: clamp(30px, 6vw, 42px);">তোমার জন্য কিছু কথা...</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--rose-gold); margin-bottom: 25px; font-size: 17px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
         <div class="envelope-wrapper anim-fade-up delay-2" onclick="openEnvelope(this)">
             <div class="envelope-flap"></div>
             <div class="envelope-front"></div>
@@ -310,31 +324,31 @@
     <!-- 7. Quiz -->
     <div class="scene" id="scene6">
         <div class="quiz-box anim-pop-in">
-            <h3 class="font-hind grad-vintage" style="margin-bottom: 10px; font-size: clamp(20px, 4vw, 26px);">ছোট একটি পরীক্ষা! 🤭</h3>
-            <p class="font-anek" style="margin-bottom: 20px; color: var(--parchment); font-size: 16px; opacity: 0.9;">আমার সবচেয়ে পছন্দের জিনিস কী?</p>
+            <h3 class="font-hind grad-gold" style="margin-bottom: 15px; font-size: clamp(22px, 4vw, 28px);">ছোট একটি পরীক্ষা! 🤭</h3>
+            <p class="font-anek" style="margin-bottom: 25px; color: var(--pearl); font-size: 18px; opacity: 0.95;">আমার সবচেয়ে পছন্দের জিনিস কী?</p>
             <button class="quiz-btn" onclick="handleQuiz(false)">কফি বা চা</button>
             <button class="quiz-btn" onclick="handleQuiz(true)">তোমার ওই মিষ্টি হাসি ❤️</button>
-            <p id="quiz-feedback" class="font-hind" style="margin-top: 15px; color: var(--gold-main); font-weight: bold;"></p>
+            <p id="quiz-feedback" class="font-hind" style="margin-top: 20px; color: var(--gold-main); font-weight: bold; font-size: 16px;"></p>
         </div>
         <button class="btn" id="btnScene6" onclick="nextScene(6)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
     <!-- 8. Magic Heart Burst -->
     <div class="scene" id="scene7">
-        <h2 class="font-galada grad-vintage anim-fade-up" style="font-size: clamp(28px, 6vw, 42px);">আমার হৃদয়ের স্পন্দন...</h2>
-        <p class="font-anek grad-rose anim-fade-up delay-1" style="font-size: 16px;">"হার্টটিতে ট্যাপ করো, উড়ে যাক আমাদের সব ভালোবাসা"</p>
+        <h2 class="font-galada grad-rose anim-fade-up" style="font-size: clamp(30px, 6vw, 44px);">আমার হৃদয়ের স্পন্দন...</h2>
+        <p class="font-anek grad-gold anim-fade-up delay-1" style="font-size: 17px;">"হার্টটিতে ট্যাপ করো, উড়ে যাক আমাদের সব ভালোবাসা"</p>
         
         <div class="magic-heart-container anim-pop-in delay-2" id="magicHeartContainer" onclick="flyHeart()">
             <div class="magic-heart" id="magicHeart">💖</div>
         </div>
         
-        <button class="btn" id="btnScene7" onclick="nextScene(7)" style="opacity: 0; pointer-events: none; margin-top:30px;">পরবর্তী পেজ</button>
+        <button class="btn" id="btnScene7" onclick="nextScene(7)" style="opacity: 0; pointer-events: none; margin-top:40px;">পরবর্তী পেজ</button>
     </div>
 
     <!-- 9. Video Cake -->
     <div class="scene" id="scene8">
-        <h2 class="font-hind grad-vintage anim-fade-up" style="font-size: clamp(26px, 6vw, 36px); margin-bottom:10px;">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--parchment); font-size: 16px; opacity: 0.9;">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
+        <h2 class="font-hind grad-gold anim-fade-up" style="font-size: clamp(28px, 6vw, 38px); margin-bottom:12px;">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--rose-gold); font-size: 16px; opacity: 0.9;">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
         
         <video id="birthdayVideo" class="cake-video anim-pop-in delay-2" autoplay loop muted playsinline onclick="blowCandle()">
             <source src="video.mp4" type="video/mp4">
@@ -345,22 +359,22 @@
 
     <!-- 10. Voice Note -->
     <div class="scene" id="scene9">
-        <h1 class="font-galada grad-vintage anim-pop-in" style="font-size: clamp(28px, 6vw, 40px);">আমার নিজের কণ্ঠে কিছু কথা...</h1>
-        <p class="font-hind anim-fade-up delay-1" style="color: var(--parchment); font-size: 16px; opacity: 0.85;">"যে কথাগুলো শুধু তোমার জন্য"</p>
+        <h1 class="font-galada grad-gold anim-pop-in" style="font-size: clamp(30px, 6vw, 42px);">আমার নিজের কণ্ঠে কিছু কথা...</h1>
+        <p class="font-hind anim-fade-up delay-1" style="color: var(--pearl); font-size: 17px; opacity: 0.85;">"যে কথাগুলো শুধু তোমার জন্য"</p>
         <div class="voice-btn anim-pop-in delay-2" id="playVoiceBtn" onclick="toggleVoice()">▶</div>
-        <p id="voiceStatus" class="font-anek" style="margin-top: 10px; color: var(--gold-main);"></p>
+        <p id="voiceStatus" class="font-anek" style="margin-top: 15px; color: var(--gold-main);"></p>
         <button class="btn anim-fade-up delay-2" onclick="nextScene(9)">পরবর্তী পেজ</button>
     </div>
 
     <!-- 11. Finale & Scratch -->
     <div class="scene" id="scene10">
-        <h1 class="font-vibes grad-vintage anim-pop-in" style="font-size: clamp(45px, 9vw, 75px); line-height: 1.2;">Happy Birthday! ✨</h1>
-        <p class="font-galada grad-rose anim-fade-up delay-1" style="font-size: clamp(18px, 4vw, 24px); margin-bottom: 20px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
-        <p class="font-hind anim-fade-up delay-2" style="margin-bottom: 15px; color: var(--parchment); opacity: 0.9;">সারপ্রাইজ গিফট দেখতে কার্ডটি ঘষো</p>
+        <h1 class="font-vibes grad-gold anim-pop-in" style="font-size: clamp(50px, 10vw, 85px); line-height: 1.2;">Happy Birthday! ✨</h1>
+        <p class="font-galada grad-rose anim-fade-up delay-1" style="font-size: clamp(20px, 4.5vw, 28px); margin-bottom: 25px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
+        <p class="font-hind anim-fade-up delay-2" style="margin-bottom: 20px; color: var(--pearl); opacity: 0.9; font-size: 16px;">সারপ্রাইজ গিফট দেখতে কার্ডটি ঘষো</p>
         <div class="scratch-container anim-pop-in delay-2">
             <div class="scratch-content">
-                <p style="font-size: 40px;">🎁</p>
-                <p class="font-hind" style="font-size: 18px; margin-top:10px;">আজ রাতে স্পেশাল ডিনার!<br><span style="color:var(--parchment);">রেডি থেকো ❤️</span></p>
+                <p style="font-size: 45px;">🎁</p>
+                <p class="font-hind" style="font-size: 20px; margin-top:12px; font-weight: bold;">আজ রাতে স্পেশাল ডিনার!<br><span style="color:var(--pearl); font-weight: normal;">রেডি থেকো ❤️</span></p>
             </div>
             <canvas id="scratchCanvas"></canvas>
         </div>
@@ -387,7 +401,7 @@
         const pCont = document.getElementById('particles');
         for (let i = 0; i < 35; i++) {
             let f = document.createElement('div'); f.className = 'stardust';
-            let size = Math.random() * 2.5 + 1;
+            let size = Math.random() * 3 + 1;
             f.style.width = size + 'px'; f.style.height = size + 'px';
             f.style.left = Math.random() * 100 + 'vw';
             f.style.animationDuration = (Math.random() * 6 + 6) + 's, 4s';
@@ -477,7 +491,7 @@
             }, 1000);
         }
 
-        // Gift Box - Fixed timing issue
+        // Gift Box 
         let wishesShown = 0;
         let isWishShowing = false;
         function showWish() {
@@ -540,7 +554,7 @@
                 let p = document.createElement('div');
                 p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 p.style.position = 'absolute'; p.style.left = '50%'; p.style.top = '50%';
-                p.style.transform = 'translate(-50%, -50%)'; p.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                p.style.transform = 'translate(-50%, -50%)'; p.style.fontSize = (Math.random() * 15 + 20) + 'px';
                 p.style.pointerEvents = 'none'; p.style.zIndex = '100';
                 let angle = Math.random() * Math.PI * 2; let dist = Math.random() * 120 + 80;
                 let tx = Math.cos(angle) * dist; let ty = Math.sin(angle) * dist;
@@ -576,17 +590,17 @@
             cvs.width = r.width; cvs.height = r.height;
             
             let grad = ctx.createLinearGradient(0, 0, cvs.width, cvs.height);
-            grad.addColorStop(0, '#dfb868'); grad.addColorStop(0.5, '#f9e5b5'); grad.addColorStop(1, '#a55d65');
+            grad.addColorStop(0, '#fbe6c2'); grad.addColorStop(0.5, '#dfb868'); grad.addColorStop(1, '#b56576');
             ctx.fillStyle = grad; ctx.fillRect(0, 0, cvs.width, cvs.height);
             
-            ctx.font = "600 clamp(16px, 4vw, 22px) 'Hind Siliguri'"; ctx.fillStyle = "#333"; ctx.textAlign = "center"; ctx.fillText("ঘষে দেখো", cvs.width/2, cvs.height/2 + 5);
+            ctx.font = "600 clamp(18px, 4vw, 24px) 'Hind Siliguri'"; ctx.fillStyle = "#2a0b12"; ctx.textAlign = "center"; ctx.fillText("ঘষে দেখো", cvs.width/2, cvs.height/2 + 5);
             
             let draw = false;
             function scratch(e) {
                 if(!draw) return; e.preventDefault();
                 let b = cvs.getBoundingClientRect();
                 let x = (e.clientX || (e.touches && e.touches[0].clientX)) - b.left, y = (e.clientY || (e.touches && e.touches[0].clientY)) - b.top;
-                ctx.globalCompositeOperation = 'destination-out'; ctx.beginPath(); ctx.arc(x, y, 30, 0, Math.PI * 2); ctx.fill();
+                ctx.globalCompositeOperation = 'destination-out'; ctx.beginPath(); ctx.arc(x, y, 35, 0, Math.PI * 2); ctx.fill();
             }
             cvs.addEventListener('mousedown',()=>draw=true); cvs.addEventListener('mouseup',()=>draw=false); cvs.addEventListener('mousemove',scratch);
             cvs.addEventListener('touchstart',()=>draw=true); cvs.addEventListener('touchend',()=>draw=false); cvs.addEventListener('touchmove',scratch);
