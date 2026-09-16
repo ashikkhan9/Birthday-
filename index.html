@@ -105,15 +105,9 @@
         .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(226,194,117,0.3); padding: clamp(15px, 3vw, 30px); border-radius: 12px; width: 100%; max-width: 500px; }
         .quiz-btn { background: rgba(226,194,117,0.1); border: 1px solid var(--text-gold); color: var(--soft-white); padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-top: 10px; width: 100%; }
 
-        /* Cake */
-        .cake-container { position: relative; width: 150px; height: 180px; margin: 30px auto; cursor: pointer; }
-        .candle { position: absolute; top: 0; left: 70px; width: 10px; height: 40px; background: #fff; border-radius: 3px; }
-        .flame { position: absolute; top: -20px; left: -3px; width: 16px; height: 24px; background: orange; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 15px gold; animation: flicker 0.2s infinite alternate; }
-        .flame.extinguished { display: none; }
-        .cake-layer-top { position: absolute; top: 40px; width: 150px; height: 50px; background: var(--rose-gold); border-radius: 10px; }
-        .cake-layer-bottom { position: absolute; top: 85px; width: 150px; height: 70px; background: #d4a373; border-radius: 10px; }
-        @keyframes flicker { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(1.1); opacity: 1; } }
-
+        /* Video Cake */
+        .cake-video { width: 100%; max-width: 250px; height: auto; border-radius: 15px; border: 2px solid var(--text-gold); box-shadow: 0 0 20px rgba(226,194,117,0.4); margin: 30px auto; cursor: pointer; }
+        
         /* Lantern */
         .lantern-container { width: 100px; height: 140px; background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 100%); border-radius: 50px 50px 10px 10px; position: relative; margin: 30px auto; cursor: pointer; box-shadow: 0 0 30px rgba(255, 154, 158, 0.6); transition: 2s ease-in; }
         .lantern-base { position: absolute; bottom: -10px; left: 25px; width: 50px; height: 10px; background: #555; border-radius: 2px; }
@@ -242,15 +236,15 @@
         <button class="btn" id="btnScene7" onclick="nextScene(7)" style="opacity: 0; pointer-events: none; margin-top:50px;">পরবর্তী</button>
     </div>
 
-    <!-- 9. Cake -->
+    <!-- 9. Video Cake -->
     <div class="scene" id="scene8">
         <h2 class="cinematic-text">মোমবাতি নেভাও! 🎂</h2>
         <p class="micro-text">"চোখ বন্ধ করে একটা উইশ করো..."</p>
-        <div class="cake-container" onclick="blowCandle()">
-            <div class="candle"><div class="flame" id="cakeFlame"></div></div>
-            <div class="cake-layer-top"></div>
-            <div class="cake-layer-bottom"></div>
-        </div>
+        
+        <video id="birthdayVideo" class="cake-video" autoplay loop muted playsinline onclick="blowCandle()">
+            <source src="video.mp4" type="video/mp4">
+        </video>
+
         <button class="btn" id="btnScene8" onclick="nextScene(8)" style="opacity: 0; pointer-events: none;">পরবর্তী</button>
     </div>
 
@@ -436,9 +430,8 @@
             }, 1500);
         }
 
-        // Cake
+        // Video Cake
         function blowCandle() {
-            document.getElementById('cakeFlame').classList.add('extinguished');
             document.getElementById('btnScene8').style.opacity = '1'; document.getElementById('btnScene8').style.pointerEvents = 'auto';
         }
 
