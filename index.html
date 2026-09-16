@@ -275,8 +275,8 @@
     <!-- 1. Lock Screen -->
     <div class="scene active" id="scene0">
         <div class="lock-box anim-pop-in">
-            <h2 class="font-galada grad-theme" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">আমাদের গোপন দুনিয়া ✨</h2>
-            <p class="font-anek" style="font-size: 16px; color: var(--text-soft-pink); margin-bottom: 25px; opacity: 0.9;">প্রবেশ করতে আমাদের ভালোবাসার পিনটি দাও...</p>
+            <h2 class="font-galada grad-theme" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">তোমার চলার পথ সুগম হোক✨</h2>
+            <p class="font-anek" style="font-size: 16px; color: var(--text-soft-pink); margin-bottom: 25px; opacity: 0.9;">প্রবেশ করত তোমার আর আমার বয়স দাও...</p>
             <input type="password" id="pinInput" maxlength="4" placeholder="••••">
             <br><button class="btn" onclick="checkPin()" style="width: 100%;">আনলক করো</button>
         </div>
@@ -300,7 +300,7 @@
     <!-- 3. Love Scanner -->
     <div class="scene" id="scene2">
         <h2 class="font-hind grad-theme anim-fade-up" style="font-size: clamp(28px, 5vw, 38px); margin-bottom: 15px;">আমাদের মনের মিল কতটুকু?</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: clamp(15px, 3vw, 18px); margin-bottom: 30px; opacity: 0.9;">"বক্সের ভেতর আঙুল ছুঁয়ে থাকো..."</p>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: clamp(15px, 3vw, 18px); margin-bottom: 30px; opacity: 0.9;">"বক্সের ভেতর চাপ দিয়ে ধরে রাখো..."</p>
         <div class="scanner-box anim-pop-in delay-2" id="scannerBox">
             <div class="fingerprint">👆</div>
             <div class="scan-line" id="scanLine"></div>
@@ -327,7 +327,7 @@
     <!-- 5. Magic Gift Box -->
     <div class="scene" id="scene4">
         <h2 class="font-hind grad-theme anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px;">ম্যাজিক উপহার ✨</h2>
-        <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে ট্যাপ করো আর আমাদের ভালোবাসার বার্তাগুলো দেখো"</p>
+        <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে যতবার ট্যাপ করবে ততবার ভালোবাসার বার্তাগুলো দেখবে"</p>
         
         <div class="magic-box-container anim-pop-in delay-2" id="magicBoxWrap" onclick="showWish(event)">
             <svg width="150" height="150" viewBox="0 0 100 100">
@@ -406,8 +406,8 @@
 
     <!-- 9. Video Cake -->
     <div class="scene" id="scene8">
-        <h2 class="font-hind grad-theme-light anim-fade-up" style="font-size: clamp(26px, 5.5vw, 36px); margin-bottom:8px;">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: 15px; opacity: 0.9;">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
+        <h2 class="font-hind grad-theme-light anim-fade-up" style="font-size: clamp(26px, 5.5vw, 36px); margin-bottom:8px;">শুভ জন্মদিন আমার রুহি! 🎉</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: 15px; opacity: 0.9;">"কেকটিতে ট্যাপ করো আর এগিয়ে নাও..."</p>
         
         <video id="birthdayVideo" class="cake-video anim-pop-in delay-2" autoplay loop muted playsinline onclick="blowCandle()">
             <source src="video.mp4" type="video/mp4">
@@ -433,8 +433,8 @@
     <!-- 11. DUA PAGE (Scrollable Card) -->
     <div class="scene" id="scene10">
         <div id="duaInitial" class="anim-pop-in" style="cursor:pointer;" onclick="openDuaCard()">
-            <h1 class="font-galada grad-theme" style="font-size: clamp(35px, 8vw, 55px); margin-bottom:10px;">আমাদের অন্তরের ফরিয়াদ ও ভালোবাসা 🌹</h1>
-            <p class="font-anek" style="color: var(--text-soft-pink); font-size: 16px; margin-bottom:20px;">বিশেষ মোনাজাতটি দেখতে নিচে হাতটিতে ট্যাপ করো</p>
+            <h1 class="font-galada grad-theme" style="font-size: clamp(35px, 8vw, 55px); margin-bottom:10px;">তোমার হাসিতেই সুখ 🥰🌹</h1>
+            <p class="font-anek" style="color: var(--text-soft-pink); font-size: 16px; margin-bottom:20px;">হাতটিতে ট্যাপ করো</p>
             <div style="font-size: 80px; filter: drop-shadow(0 0 20px rgba(255, 8, 68, 0.5)); animation: pulseHeart 1.5s infinite alternate;">🤲</div>
         </div>
         
