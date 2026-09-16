@@ -9,13 +9,16 @@
     
     <style>
         :root {
-            /* Exact Warm Parchment & Vintage Gold Palette matching your image */
-            --bg-deep: #1c140d; /* Deep warm charcoal/brown */
-            --bg-glow: #3a2718; /* Warm scroll amber glow */
-            --gold-light: #fce8b6; 
-            --gold-main: #d4a373; /* Parchment golden tone */
+            /* Background kept dark for contrast, but text colors matched to 7675.jpg */
+            --bg-deep: #1a0f14; 
+            --bg-glow: #33151f; 
+            
+            /* Text Colors derived from your image */
+            --text-soft-pink: #ffb6c1; /* Light pink background of the image */
+            --text-bright-pink: #ff4d6d; /* Mid-tone pink */
+            --text-primary-red: #e60033; /* Deep red from the hearts/rose */
+            --text-light-pearl: #ffe5ec; /* Almost white-pink for easy reading */
             --scroll-brown: #8c5830;
-            --pearl: #fff9ed;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
@@ -23,7 +26,7 @@
         body {
             background: radial-gradient(circle at center, var(--bg-glow) 0%, var(--bg-deep) 100%);
             font-family: 'Hind Siliguri', sans-serif;
-            color: var(--pearl); overflow: hidden;
+            color: var(--text-light-pearl); overflow: hidden;
             display: flex; justify-content: center; align-items: center;
             height: 100vh; touch-action: none; position: relative;
         }
@@ -34,15 +37,16 @@
         .font-anek { font-family: 'Anek Bangla', sans-serif; }
         .font-vibes { font-family: 'Great Vibes', cursive; letter-spacing: 2px; }
         
-        .grad-gold {
-            background: linear-gradient(to right, #fff1d6, #e9c46a);
+        /* New Gradients based on the image */
+        .grad-pink {
+            background: linear-gradient(to right, #ffb6c1, #ff4d6d);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(233, 196, 106, 0.4));
+            filter: drop-shadow(0 0 10px rgba(255, 77, 109, 0.4));
         }
-        .grad-parchment {
-            background: linear-gradient(135deg, #f4e2bb 0%, #d4a373 100%);
+        .grad-red {
+            background: linear-gradient(135deg, #ff4d6d, #e60033);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(212, 163, 115, 0.4));
+            filter: drop-shadow(0 0 10px rgba(230, 0, 51, 0.4));
         }
 
         /* --- Smooth Animations --- */
@@ -63,23 +67,23 @@
         /* Ambient Audio Toggle */
         .audio-toggle {
             position: absolute; top: 20px; right: 20px; width: 45px; height: 45px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 163, 115, 0.4); border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; color: var(--gold-main);
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 77, 109, 0.4); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; color: var(--text-bright-pink);
             font-size: 20px; cursor: pointer; z-index: 1000; backdrop-filter: blur(10px); display: none;
         }
 
         /* Touch Ripple */
         .touch-ripple {
-            position: absolute; width: 15px; height: 15px; border: 2px solid var(--gold-main);
+            position: absolute; width: 15px; height: 15px; border: 2px solid var(--text-bright-pink);
             border-radius: 50%; pointer-events: none; z-index: 9999; animation: rippleExpand 0.7s ease-out forwards;
         }
         @keyframes rippleExpand { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(5); opacity: 0; } }
 
         /* Background Particles */
         #particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .stardust { position: absolute; background: var(--gold-main); border-radius: 50%; opacity: 0; animation: starFloat 10s infinite linear, starGlow 4s infinite alternate; }
+        .stardust { position: absolute; background: var(--text-bright-pink); border-radius: 50%; opacity: 0; animation: starFloat 10s infinite linear, starGlow 4s infinite alternate; }
         @keyframes starFloat { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 20%, 80% { opacity: 0.5; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
-        @keyframes starGlow { 0% { box-shadow: 0 0 2px var(--gold-main); } 100% { box-shadow: 0 0 10px var(--gold-main), 0 0 20px var(--pearl); } }
+        @keyframes starGlow { 0% { box-shadow: 0 0 2px var(--text-bright-pink); } 100% { box-shadow: 0 0 10px var(--text-bright-pink), 0 0 20px var(--text-light-pearl); } }
 
         /* Scene Layout */
         .scene {
@@ -92,33 +96,33 @@
 
         /* Common Buttons */
         .btn {
-            background: rgba(212, 163, 115, 0.1); border: 1px solid rgba(212, 163, 115, 0.6); 
-            color: var(--gold-main); padding: clamp(12px, 2.5vw, 15px) clamp(30px, 5vw, 45px); 
+            background: rgba(255, 77, 109, 0.1); border: 1px solid rgba(255, 77, 109, 0.6); 
+            color: var(--text-soft-pink); padding: clamp(12px, 2.5vw, 15px) clamp(30px, 5vw, 45px); 
             font-size: clamp(15px, 2.5vw, 18px); font-family: 'Hind Siliguri', sans-serif; 
             border-radius: 40px; cursor: pointer; transition: all 0.4s ease;
             margin-top: 30px; z-index: 50; font-weight: 600; letter-spacing: 1px; backdrop-filter: blur(5px);
         }
-        .btn:hover { background: var(--gold-main); color: var(--bg-deep); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 163, 115, 0.3); }
+        .btn:hover { background: var(--text-primary-red); color: var(--text-light-pearl); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230, 0, 51, 0.3); }
 
         /* Lock Screen */
         .lock-box { 
             background: rgba(255, 255, 255, 0.03); 
             padding: clamp(35px, 6vw, 50px); 
             border-radius: 24px; 
-            border: 1px solid rgba(212, 163, 115, 0.25); 
+            border: 1px solid rgba(255, 77, 109, 0.25); 
             backdrop-filter: blur(20px); 
             -webkit-backdrop-filter: blur(20px);
             box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.02); 
             width: 100%; max-width: 420px;
         }
         .lock-box input { 
-            background: rgba(0,0,0,0.25); border: 1px solid rgba(212, 163, 115, 0.3); 
-            color: var(--gold-main); font-size: 28px; text-align: center; 
+            background: rgba(0,0,0,0.25); border: 1px solid rgba(255, 77, 109, 0.3); 
+            color: var(--text-bright-pink); font-size: 28px; text-align: center; 
             padding: 12px; margin: 20px 0; border-radius: 12px; width: 180px; 
             letter-spacing: 12px; transition: 0.3s; font-weight: bold;
             box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
         }
-        .lock-box input:focus { border-color: var(--gold-light); outline: none; box-shadow: 0 0 15px rgba(212, 163, 115, 0.2), inset 0 2px 10px rgba(0,0,0,0.3); }
+        .lock-box input:focus { border-color: var(--text-soft-pink); outline: none; box-shadow: 0 0 15px rgba(255, 77, 109, 0.2), inset 0 2px 10px rgba(0,0,0,0.3); }
         .shake { animation: shakeError 0.5s; border-color: #ff4d4d !important; }
         @keyframes shakeError { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
 
@@ -127,89 +131,103 @@
         @keyframes floatArt { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
         /* Scanner */
-        .scanner-box { position: relative; width: 130px; height: 160px; margin: 25px auto; display: flex; justify-content: center; align-items: center; border: 2px dashed rgba(212, 163, 115, 0.4); border-radius: 25px; cursor: pointer; overflow: hidden; background: rgba(255,255,255,0.02); }
-        .fingerprint { font-size: 65px; color: rgba(212, 163, 115, 0.3); transition: 0.3s; }
-        .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--gold-main); box-shadow: 0 0 15px var(--gold-main); display: none; animation: scanMove 1.5s infinite linear; }
+        .scanner-box { position: relative; width: 130px; height: 160px; margin: 25px auto; display: flex; justify-content: center; align-items: center; border: 2px dashed rgba(255, 77, 109, 0.4); border-radius: 25px; cursor: pointer; overflow: hidden; background: rgba(255,255,255,0.02); }
+        .fingerprint { font-size: 65px; color: rgba(255, 77, 109, 0.3); transition: 0.3s; }
+        .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--text-bright-pink); box-shadow: 0 0 15px var(--text-bright-pink); display: none; animation: scanMove 1.5s infinite linear; }
         @keyframes scanMove { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
 
         /* Counter Grid */
         .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2.5vw, 20px); margin-top: 20px; width: 100%; max-width: 600px; }
-        .counter-box { background: rgba(255,255,255,0.03); padding: clamp(15px, 3vw, 20px); border-radius: 14px; border: 1px solid rgba(212, 163, 115, 0.15); transition: 0.3s; backdrop-filter: blur(8px); }
-        .counter-box:hover { transform: translateY(-3px); border-color: rgba(212, 163, 115, 0.4); }
-        .counter-num { font-size: clamp(22px, 4.5vw, 32px); color: var(--gold-main); font-weight: bold; font-family: 'Anek Bangla', sans-serif;}
-        .counter-label { font-size: clamp(12px, 1.5vw, 15px); color: var(--pearl); opacity: 0.8; font-family: 'Hind Siliguri', sans-serif;}
+        .counter-box { background: rgba(255,255,255,0.03); padding: clamp(15px, 3vw, 20px); border-radius: 14px; border: 1px solid rgba(255, 77, 109, 0.15); transition: 0.3s; backdrop-filter: blur(8px); }
+        .counter-box:hover { transform: translateY(-3px); border-color: rgba(255, 77, 109, 0.4); }
+        .counter-num { font-size: clamp(22px, 4.5vw, 32px); color: var(--text-primary-red); font-weight: bold; font-family: 'Anek Bangla', sans-serif;}
+        .counter-label { font-size: clamp(12px, 1.5vw, 15px); color: var(--text-light-pearl); opacity: 0.8; font-family: 'Hind Siliguri', sans-serif;}
 
         /* Magic Gift Box */
         .magic-box-container { margin: 30px auto; cursor: pointer; transition: transform 0.2s; animation: gentlePulse 2s infinite alternate; }
         .magic-box-container:active { transform: scale(0.9); }
-        @keyframes gentlePulse { 0% { filter: drop-shadow(0 0 10px rgba(212,163,115,0.2)); } 100% { filter: drop-shadow(0 0 30px rgba(212,163,115,0.6)); } }
+        @keyframes gentlePulse { 0% { filter: drop-shadow(0 0 10px rgba(255,77,109,0.2)); } 100% { filter: drop-shadow(0 0 30px rgba(255,77,109,0.6)); } }
         
-        .wish-popup { position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); background: rgba(28, 20, 13, 0.95); color: var(--gold-light); padding: 25px 20px; border-radius: 16px; width: 290px; text-align: center; font-size: 16px; font-family: 'Anek Bangla', sans-serif; font-weight: 500; line-height: 1.5; opacity: 0; pointer-events: none; transition: 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 100; border: 1px solid rgba(212, 163, 115, 0.4); }
+        .wish-popup { position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); background: rgba(26, 15, 20, 0.95); color: var(--text-soft-pink); padding: 25px 20px; border-radius: 16px; width: 290px; text-align: center; font-size: 16px; font-family: 'Anek Bangla', sans-serif; font-weight: 500; line-height: 1.5; opacity: 0; pointer-events: none; transition: 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 100; border: 1px solid rgba(255, 77, 109, 0.4); }
         .wish-popup.show { opacity: 1; transform: translate(-50%, -75%); }
 
         /* Premium Envelope */
         .envelope-wrapper { 
             position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); 
-            background: #271a10; cursor: pointer; border-radius: 10px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 25px rgba(212, 163, 115, 0.15); 
+            background: #2b1119; cursor: pointer; border-radius: 10px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 25px rgba(255, 77, 109, 0.15); 
             transition: 0.5s; margin-top: 25px; 
         }
         .envelope-flap { 
             position: absolute; top: 0; left: 0; width: 100%; height: 60%; 
-            background: linear-gradient(135deg, #5c3c22, #382414); 
+            background: linear-gradient(135deg, #6b1b2f, #3d0d1b); 
             clip-path: polygon(0 0, 100% 0, 50% 100%); 
             transform-origin: top; transition: 1s cubic-bezier(0.4, 0, 0.2, 1); z-index: 4; 
-            border-bottom: 2px solid rgba(212, 163, 115, 0.2);
+            border-bottom: 2px solid rgba(255, 77, 109, 0.2);
         }
         .envelope-front { 
             position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; 
-            background: linear-gradient(to top, #382414, #5c3c22); 
+            background: linear-gradient(to top, #3d0d1b, #6b1b2f); 
             clip-path: polygon(0 100%, 0 0, 50% 65%, 100% 0, 100% 100%); 
             z-index: 3; border-radius: 0 0 10px 10px; 
         }
         
-        /* 7676.jpg VINTAGE SCROLL BG */
+        /* UPDATED LETTER COLOR & LOGO CONTAINER */
         .letter { 
             position: absolute; bottom: 8px; left: 12px; width: calc(100% - 24px); height: 95%; 
-            background: url('7676.jpg') no-repeat center center / cover; 
+            background: linear-gradient(135deg, #3a131f 0%, #240a12 100%); 
+            border: 1px solid rgba(255, 77, 109, 0.3);
             z-index: 2; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
-            padding: clamp(60px, 12vh, 80px) clamp(20px, 4vw, 30px) clamp(70px, 15vh, 95px) clamp(20px, 4vw, 30px); 
-            color: #3b1b1b; border-radius: 6px 6px 0 0; 
-            overflow-y: auto; text-align: center; display: flex; align-items: center; justify-content: center;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+            padding: clamp(20px, 4vh, 30px) clamp(15px, 3vw, 25px); 
+            color: var(--text-light-pearl); border-radius: 8px 8px 0 0; 
+            overflow-y: auto; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .letter-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(20px, 4.5vw, 28px);
+            background: linear-gradient(to right, #ffb6c1, #ff4d6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(255, 77, 109, 0.5));
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 77, 109, 0.2);
+            width: 80%;
         }
         
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; opacity: 0; }
         .envelope-wrapper.open .letter { transform: translateY(clamp(-50%, -10vw, -70%)); z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.6); }
-        #typewriter-text { font-size: clamp(14px, 2.5vw, 17px); line-height: 1.7; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; font-weight: 700; color: #2d1515; }
+        #typewriter-text { font-size: clamp(13px, 2.2vw, 16px); line-height: 1.7; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; font-weight: 500; color: var(--text-light-pearl); }
 
         /* Quiz */
-        .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(212, 163, 115, 0.2); padding: clamp(25px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 500px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .quiz-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 163, 115, 0.3); color: var(--pearl); padding: 14px; border-radius: 12px; cursor: pointer; transition: 0.3s; margin-top: 15px; width: 100%; font-family: 'Hind Siliguri', sans-serif; font-size: 16px; }
-        .quiz-btn:hover { background: rgba(212, 163, 115, 0.15); border-color: var(--gold-main); color: var(--gold-main); transform: translateX(5px); }
+        .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 77, 109, 0.2); padding: clamp(25px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 500px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .quiz-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 77, 109, 0.3); color: var(--text-light-pearl); padding: 14px; border-radius: 12px; cursor: pointer; transition: 0.3s; margin-top: 15px; width: 100%; font-family: 'Hind Siliguri', sans-serif; font-size: 16px; }
+        .quiz-btn:hover { background: rgba(255, 77, 109, 0.15); border-color: var(--text-primary-red); color: var(--text-soft-pink); transform: translateX(5px); }
 
         /* Glowing Magic Heart */
         .magic-heart-container { position: relative; margin: 40px auto; cursor: pointer; animation: pulseHeart 1.5s infinite alternate; }
-        .magic-heart { font-size: clamp(70px, 15vw, 110px); filter: drop-shadow(0 0 25px rgba(212, 163, 115, 0.5)); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
-        .fly-heart { transform: scale(3) translateY(-20px); opacity: 0; filter: drop-shadow(0 0 60px rgba(212, 163, 115, 1)) blur(5px); }
-        @keyframes pulseHeart { 0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(212, 163, 115, 0.3)); } 100% { transform: scale(1.1); filter: drop-shadow(0 0 40px rgba(212, 163, 115, 0.8)); } }
+        .magic-heart { font-size: clamp(70px, 15vw, 110px); filter: drop-shadow(0 0 25px rgba(230, 0, 51, 0.5)); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .fly-heart { transform: scale(3) translateY(-20px); opacity: 0; filter: drop-shadow(0 0 60px rgba(230, 0, 51, 1)) blur(5px); }
+        @keyframes pulseHeart { 0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 77, 109, 0.3)); } 100% { transform: scale(1.1); filter: drop-shadow(0 0 40px rgba(230, 0, 51, 0.8)); } }
 
         /* Video Cake */
         .cake-video { 
             width: 100%; max-width: 280px; min-height: 280px; height: auto; 
-            border-radius: 18px; border: 2px solid rgba(212, 163, 115, 0.4); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(212, 163, 115, 0.15); 
+            border-radius: 18px; border: 2px solid rgba(255, 77, 109, 0.4); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(255, 77, 109, 0.15); 
             margin: 35px auto; cursor: pointer; object-fit: cover;
-            background: rgba(0,0,0,0.4) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="%23d4a373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>') no-repeat center; 
+            background: rgba(0,0,0,0.4) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="%23ff4d6d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>') no-repeat center; 
         }
         
         /* Voice Note */
-        .voice-btn { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold-main)); display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 30px auto; box-shadow: 0 10px 30px rgba(212, 163, 115, 0.3); font-size: 35px; color: var(--bg-deep); transition: 0.3s; padding-left: 5px; }
+        .voice-btn { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--text-soft-pink), var(--text-primary-red)); display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 30px auto; box-shadow: 0 10px 30px rgba(230, 0, 51, 0.3); font-size: 35px; color: var(--bg-deep); transition: 0.3s; padding-left: 5px; }
         .voice-btn:active { transform: scale(0.9); }
 
         /* Scratch Card */
         .scratch-container { position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); margin: 0 auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
-        .scratch-content { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #271a10, #1c140d); border: 2px solid rgba(212, 163, 115, 0.4); border-radius: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--gold-main); text-align: center; padding: 20px; }
+        .scratch-content { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #2b1119, #1a0f14); border: 2px solid rgba(255, 77, 109, 0.4); border-radius: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-bright-pink); text-align: center; padding: 20px; }
         canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; z-index: 2; cursor: pointer; }
     </style>
 </head>
@@ -225,8 +243,8 @@
     <!-- 1. Lock Screen -->
     <div class="scene active" id="scene0">
         <div class="lock-box anim-pop-in">
-            <h2 class="font-galada grad-gold" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">আমাদের গোপন দুনিয়া ✨</h2>
-            <p class="font-anek" style="font-size: 16px; color: var(--gold-main); margin-bottom: 25px; opacity: 0.9;">প্রবেশ করতে আমাদের ভালোবাসার পিনটি দাও...</p>
+            <h2 class="font-galada grad-pink" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">আমাদের গোপন দুনিয়া ✨</h2>
+            <p class="font-anek" style="font-size: 16px; color: var(--text-soft-pink); margin-bottom: 25px; opacity: 0.9;">প্রবেশ করতে আমাদের ভালোবাসার পিনটি দাও...</p>
             <input type="password" id="pinInput" maxlength="4" placeholder="••••">
             <br><button class="btn" onclick="checkPin()" style="width: 100%;">আনলক করো</button>
         </div>
@@ -235,34 +253,34 @@
     <!-- 2. Entry -->
     <div class="scene" id="scene1">
         <svg class="cute-art anim-pop-in" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 70 C 40 70, 30 60, 30 50 C 30 40, 40 30, 50 30 C 60 30, 70 40, 70 50 C 70 60, 60 70, 50 70 Z" fill="none" stroke="#d4a373" stroke-width="3"/>
-            <path d="M150 70 C 140 70, 130 60, 130 50 C 130 40, 140 30, 150 30 C 160 30, 170 40, 170 50 C 170 60, 160 70, 150 70 Z" fill="none" stroke="#d4a373" stroke-width="3"/>
-            <path d="M50 90 L 50 70 M 150 90 L 150 70" stroke="#d4a373" stroke-width="3" stroke-linecap="round"/>
-            <path d="M100 60 C 100 60, 85 45, 95 35 C 100 30, 105 35, 105 35 C 105 35, 110 30, 115 35 C 125 45, 100 60, 100 60 Z" fill="#d4a373">
+            <path d="M50 70 C 40 70, 30 60, 30 50 C 30 40, 40 30, 50 30 C 60 30, 70 40, 70 50 C 70 60, 60 70, 50 70 Z" fill="none" stroke="#ff4d6d" stroke-width="3"/>
+            <path d="M150 70 C 140 70, 130 60, 130 50 C 130 40, 140 30, 150 30 C 160 30, 170 40, 170 50 C 170 60, 160 70, 150 70 Z" fill="none" stroke="#ff4d6d" stroke-width="3"/>
+            <path d="M50 90 L 50 70 M 150 90 L 150 70" stroke="#ff4d6d" stroke-width="3" stroke-linecap="round"/>
+            <path d="M100 60 C 100 60, 85 45, 95 35 C 100 30, 105 35, 105 35 C 105 35, 110 30, 115 35 C 125 45, 100 60, 100 60 Z" fill="#e60033">
                 <animate attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="2.5s" repeatCount="indefinite" />
             </path>
         </svg>
-        <h1 class="font-galada grad-gold anim-fade-up delay-1" style="font-size: clamp(32px, 6vw, 45px); margin-bottom: 15px;">কিছু গল্প তারার চেয়েও সুন্দর...</h1>
-        <p class="font-anek grad-parchment anim-fade-up delay-2" style="font-size: clamp(16px, 3vw, 20px);">"অচেনা একটা পথ আজ আমাদের ঠিকানা"</p>
+        <h1 class="font-galada grad-pink anim-fade-up delay-1" style="font-size: clamp(32px, 6vw, 45px); margin-bottom: 15px;">কিছু গল্প তারার চেয়েও সুন্দর...</h1>
+        <p class="font-anek grad-red anim-fade-up delay-2" style="font-size: clamp(16px, 3vw, 20px);">"অচেনা একটা পথ আজ আমাদের ঠিকানা"</p>
         <button class="btn anim-pop-in delay-2" onclick="nextScene(1)">গল্পটা শুরু হোক</button>
     </div>
 
     <!-- 3. Love Scanner -->
     <div class="scene" id="scene2">
-        <h2 class="font-hind grad-gold anim-fade-up" style="font-size: clamp(28px, 5vw, 38px); margin-bottom: 15px;">আমাদের মনের মিল কতটুকু?</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--gold-main); font-size: clamp(15px, 3vw, 18px); margin-bottom: 30px; opacity: 0.9;">"বক্সের ভেতর আঙুল ছুঁয়ে থাকো..."</p>
+        <h2 class="font-hind grad-pink anim-fade-up" style="font-size: clamp(28px, 5vw, 38px); margin-bottom: 15px;">আমাদের মনের মিল কতটুকু?</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: clamp(15px, 3vw, 18px); margin-bottom: 30px; opacity: 0.9;">"বক্সের ভেতর আঙুল ছুঁয়ে থাকো..."</p>
         <div class="scanner-box anim-pop-in delay-2" id="scannerBox">
             <div class="fingerprint">👆</div>
             <div class="scan-line" id="scanLine"></div>
         </div>
-        <div class="scan-progress font-hind anim-fade-up delay-2" id="scanProgress" style="color: var(--gold-main); font-size: 20px;">0%</div>
+        <div class="scan-progress font-hind anim-fade-up delay-2" id="scanProgress" style="color: var(--text-bright-pink); font-size: 20px;">0%</div>
         <button class="btn" id="btnScene2" onclick="nextScene(2)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
     <!-- 4. Counter -->
     <div class="scene" id="scene3">
-        <h2 class="font-galada grad-parchment anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-bottom: 10px;">একসাথে কাটানো সময়...</h2>
-        <p class="font-hind anim-fade-up delay-1" style="color: var(--pearl); font-size: clamp(15px, 3vw, 18px); font-style: italic; opacity: 0.85;">"প্রতিটি মুহূর্ত যেন শতাব্দীর সমান মূল্যবান"</p>
+        <h2 class="font-galada grad-red anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-bottom: 10px;">একসাথে কাটানো সময়...</h2>
+        <p class="font-hind anim-fade-up delay-1" style="color: var(--text-light-pearl); font-size: clamp(15px, 3vw, 18px); font-style: italic; opacity: 0.85;">"প্রতিটি মুহূর্ত যেন শতাব্দীর সমান মূল্যবান"</p>
         <div class="counter-grid anim-fade-up delay-2">
             <div class="counter-box"><div class="counter-num" id="c-years">0</div><div class="counter-label">বছর</div></div>
             <div class="counter-box"><div class="counter-num" id="c-months">0</div><div class="counter-label">মাস</div></div>
@@ -276,44 +294,45 @@
 
     <!-- 5. Magic Gift Box -->
     <div class="scene" id="scene4">
-        <h2 class="font-hind grad-gold anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px;">ম্যাজিক উপহার ✨</h2>
-        <p class="font-anek grad-parchment anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে ট্যাপ করো আর দেখো তোমার জন্য কী লেখা আছে"</p>
+        <h2 class="font-hind grad-pink anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px;">ম্যাজিক উপহার ✨</h2>
+        <p class="font-anek grad-red anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে ট্যাপ করো আর দেখো তোমার জন্য কী লেখা আছে"</p>
         
         <div class="magic-box-container anim-pop-in delay-2" onclick="showWish()">
             <svg width="150" height="150" viewBox="0 0 100 100">
                 <defs>
                     <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#8c5830" />
-                        <stop offset="100%" stop-color="#382414" />
+                        <stop offset="0%" stop-color="#8c1c38" />
+                        <stop offset="100%" stop-color="#3d0d1b" />
                     </linearGradient>
                     <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#fce8b6" />
-                        <stop offset="100%" stop-color="#d4a373" />
+                        <stop offset="0%" stop-color="#ffb6c1" />
+                        <stop offset="100%" stop-color="#ff4d6d" />
                     </linearGradient>
                 </defs>
                 <rect x="20" y="45" width="60" height="45" rx="5" fill="url(#boxGrad)"/>
                 <rect x="46" y="45" width="8" height="45" fill="#fff" opacity="0.3"/>
                 <rect x="15" y="32" width="70" height="14" rx="4" fill="url(#lidGrad)"/>
-                <path d="M 50 32 C 30 15, 20 35, 45 32 Z" fill="#d4a373"/>
-                <path d="M 50 32 C 70 15, 80 35, 55 32 Z" fill="#d4a373"/>
+                <path d="M 50 32 C 30 15, 20 35, 45 32 Z" fill="#ff4d6d"/>
+                <path d="M 50 32 C 70 15, 80 35, 55 32 Z" fill="#ff4d6d"/>
             </svg>
         </div>
         
         <div class="wish-popup" id="wishPopup">
-            <div style="font-size:26px; margin-bottom:8px; text-shadow: 0 0 10px var(--gold-main);">✨</div>
+            <div style="font-size:26px; margin-bottom:8px; text-shadow: 0 0 10px var(--text-bright-pink);">✨</div>
             <span id="wishText"></span>
         </div>
         <button class="btn" id="btnScene4" onclick="nextScene(4)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 6. Envelope (7676.jpg) -->
+    <!-- 6. Envelope -->
     <div class="scene" id="scene5">
-        <h2 class="font-galada grad-gold anim-pop-in" style="font-size: clamp(30px, 6vw, 42px);">তোমার জন্য কিছু কথা...</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--gold-main); margin-bottom: 25px; font-size: 17px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
+        <h2 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(30px, 6vw, 42px);">তোমার জন্য কিছু কথা...</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); margin-bottom: 25px; font-size: 17px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
         <div class="envelope-wrapper anim-fade-up delay-2" onclick="openEnvelope(this)">
             <div class="envelope-flap"></div>
             <div class="envelope-front"></div>
             <div class="letter">
+                <div class="letter-logo">Atike 💝 Ruhi</div>
                 <div id="typewriter-text"></div>
             </div>
         </div>
@@ -323,19 +342,19 @@
     <!-- 7. Quiz -->
     <div class="scene" id="scene6">
         <div class="quiz-box anim-pop-in">
-            <h3 class="font-hind grad-gold" style="margin-bottom: 15px; font-size: clamp(22px, 4vw, 28px);">ছোট একটি পরীক্ষা! 🤭</h3>
-            <p class="font-anek" style="margin-bottom: 25px; color: var(--pearl); font-size: 18px; opacity: 0.95;">আমার সবচেয়ে পছন্দের জিনিস কী?</p>
+            <h3 class="font-hind grad-pink" style="margin-bottom: 15px; font-size: clamp(22px, 4vw, 28px);">ছোট একটি পরীক্ষা! 🤭</h3>
+            <p class="font-anek" style="margin-bottom: 25px; color: var(--text-light-pearl); font-size: 18px; opacity: 0.95;">আমার সবচেয়ে পছন্দের জিনিস কী?</p>
             <button class="quiz-btn" onclick="handleQuiz(false)">কফি বা চা</button>
             <button class="quiz-btn" onclick="handleQuiz(true)">তোমার ওই মিষ্টি হাসি ❤️</button>
-            <p id="quiz-feedback" class="font-hind" style="margin-top: 20px; color: var(--gold-main); font-weight: bold; font-size: 16px;"></p>
+            <p id="quiz-feedback" class="font-hind" style="margin-top: 20px; color: var(--text-bright-pink); font-weight: bold; font-size: 16px;"></p>
         </div>
         <button class="btn" id="btnScene6" onclick="nextScene(6)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
     <!-- 8. Magic Heart Burst -->
     <div class="scene" id="scene7">
-        <h2 class="font-galada grad-parchment anim-fade-up" style="font-size: clamp(30px, 6vw, 44px);">আমার হৃদয়ের স্পন্দন...</h2>
-        <p class="font-anek grad-gold anim-fade-up delay-1" style="font-size: 17px;">"হার্টটিতে ট্যাপ করো, উড়ে যাক আমাদের সব ভালোবাসা"</p>
+        <h2 class="font-galada grad-red anim-fade-up" style="font-size: clamp(30px, 6vw, 44px);">আমার হৃদয়ের স্পন্দন...</h2>
+        <p class="font-anek grad-pink anim-fade-up delay-1" style="font-size: 17px;">"হার্টটিতে ট্যাপ করো, উড়ে যাক আমাদের সব ভালোবাসা"</p>
         
         <div class="magic-heart-container anim-pop-in delay-2" id="magicHeartContainer" onclick="flyHeart()">
             <div class="magic-heart" id="magicHeart">💖</div>
@@ -346,8 +365,8 @@
 
     <!-- 9. Video Cake -->
     <div class="scene" id="scene8">
-        <h2 class="font-hind grad-gold anim-fade-up" style="font-size: clamp(28px, 6vw, 38px); margin-bottom:12px;">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--gold-main); font-size: 16px; opacity: 0.9;">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
+        <h2 class="font-hind grad-pink anim-fade-up" style="font-size: clamp(28px, 6vw, 38px); margin-bottom:12px;">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: 16px; opacity: 0.9;">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
         
         <video id="birthdayVideo" class="cake-video anim-pop-in delay-2" autoplay loop muted playsinline onclick="blowCandle()">
             <source src="video.mp4" type="video/mp4">
@@ -358,22 +377,22 @@
 
     <!-- 10. Voice Note -->
     <div class="scene" id="scene9">
-        <h1 class="font-galada grad-gold anim-pop-in" style="font-size: clamp(30px, 6vw, 42px);">আমার নিজের কণ্ঠে কিছু কথা...</h1>
-        <p class="font-hind anim-fade-up delay-1" style="color: var(--pearl); font-size: 17px; opacity: 0.85;">"যে কথাগুলো শুধু তোমার জন্য"</p>
+        <h1 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(30px, 6vw, 42px);">আমার নিজের কণ্ঠে কিছু কথা...</h1>
+        <p class="font-hind anim-fade-up delay-1" style="color: var(--text-light-pearl); font-size: 17px; opacity: 0.85;">"যে কথাগুলো শুধু তোমার জন্য"</p>
         <div class="voice-btn anim-pop-in delay-2" id="playVoiceBtn" onclick="toggleVoice()">▶</div>
-        <p id="voiceStatus" class="font-anek" style="margin-top: 15px; color: var(--gold-main);"></p>
+        <p id="voiceStatus" class="font-anek" style="margin-top: 15px; color: var(--text-bright-pink);"></p>
         <button class="btn anim-fade-up delay-2" onclick="nextScene(9)">পরবর্তী পেজ</button>
     </div>
 
     <!-- 11. Finale & Scratch -->
     <div class="scene" id="scene10">
-        <h1 class="font-vibes grad-gold anim-pop-in" style="font-size: clamp(50px, 10vw, 85px); line-height: 1.2;">Happy Birthday! ✨</h1>
-        <p class="font-galada grad-parchment anim-fade-up delay-1" style="font-size: clamp(20px, 4.5vw, 28px); margin-bottom: 25px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
-        <p class="font-hind anim-fade-up delay-2" style="margin-bottom: 20px; color: var(--pearl); opacity: 0.9; font-size: 16px;">সারপ্রাইজ গিফট দেখতে কার্ডটি ঘষো</p>
+        <h1 class="font-vibes grad-pink anim-pop-in" style="font-size: clamp(50px, 10vw, 85px); line-height: 1.2;">Happy Birthday! ✨</h1>
+        <p class="font-galada grad-red anim-fade-up delay-1" style="font-size: clamp(20px, 4.5vw, 28px); margin-bottom: 25px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
+        <p class="font-hind anim-fade-up delay-2" style="margin-bottom: 20px; color: var(--text-light-pearl); opacity: 0.9; font-size: 16px;">সারপ্রাইজ গিফট দেখতে কার্ডটি ঘষো</p>
         <div class="scratch-container anim-pop-in delay-2">
             <div class="scratch-content">
                 <p style="font-size: 45px;">🎁</p>
-                <p class="font-hind" style="font-size: 20px; margin-top:12px; font-weight: bold;">আজ রাতে স্পেশাল ডিনার!<br><span style="color:var(--pearl); font-weight: normal;">রেডি থেকো ❤️</span></p>
+                <p class="font-hind" style="font-size: 20px; margin-top:12px; font-weight: bold;">আজ রাতে স্পেশাল ডিনার!<br><span style="color:var(--text-light-pearl); font-weight: normal;">রেডি থেকো ❤️</span></p>
             </div>
             <canvas id="scratchCanvas"></canvas>
         </div>
@@ -589,10 +608,10 @@
             cvs.width = r.width; cvs.height = r.height;
             
             let grad = ctx.createLinearGradient(0, 0, cvs.width, cvs.height);
-            grad.addColorStop(0, '#fce8b6'); grad.addColorStop(0.5, '#d4a373'); grad.addColorStop(1, '#8c5830');
+            grad.addColorStop(0, '#ffb6c1'); grad.addColorStop(0.5, '#ff4d6d'); grad.addColorStop(1, '#e60033');
             ctx.fillStyle = grad; ctx.fillRect(0, 0, cvs.width, cvs.height);
             
-            ctx.font = "600 clamp(18px, 4vw, 24px) 'Hind Siliguri'"; ctx.fillStyle = "#1c140d"; ctx.textAlign = "center"; ctx.fillText("ঘষে দেখো", cvs.width/2, cvs.height/2 + 5);
+            ctx.font = "600 clamp(18px, 4vw, 24px) 'Hind Siliguri'"; ctx.fillStyle = "#1a0f14"; ctx.textAlign = "center"; ctx.fillText("ঘষে দেখো", cvs.width/2, cvs.height/2 + 5);
             
             let draw = false;
             function scratch(e) {
