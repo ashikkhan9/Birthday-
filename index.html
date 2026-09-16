@@ -131,7 +131,7 @@
         .counter-num { font-size: clamp(22px, 4.5vw, 32px); color: #ff0844; font-weight: bold; font-family: 'Anek Bangla', sans-serif;}
         .counter-label { font-size: clamp(12px, 1.5vw, 15px); color: var(--text-light-pearl); opacity: 0.8; font-family: 'Hind Siliguri', sans-serif;}
 
-        /* Magic Gift Box & Popup (Stationary Box with Heart Sprinkle) */
+        /* Magic Gift Box & Popup */
         .magic-box-container { margin: 30px auto; cursor: pointer; position: relative; }
         
         .wish-popup { 
@@ -155,12 +155,12 @@
             box-shadow: 0 0 10px rgba(255, 8, 68, 0.8); font-family: 'Hind Siliguri', sans-serif;
         }
 
-        /* 1. EXPANDED LETTER BOX AREA FOR MOBILE */
+        /* 1. EXPANDED LETTER BOX AREA FOR MOBILE (Fixed Size & Fit) */
         .envelope-wrapper { 
-            position: relative; width: clamp(290px, 88vw, 500px); height: clamp(210px, 60vw, 350px); 
+            position: relative; width: clamp(290px, 88vw, 500px); height: clamp(300px, 75vw, 420px); /* Height Increased */
             background: #2b1119; cursor: pointer; border-radius: 12px; 
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(255, 117, 140, 0.2); 
-            transition: 0.5s; margin: 30px auto; 
+            transition: 0.5s; margin: 20px auto; 
         }
         .envelope-flap { 
             position: absolute; top: 0; left: 0; width: 100%; height: 60%; 
@@ -195,7 +195,7 @@
 
         .envelope-wrapper.open .envelope-seal-logo { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
 
-        /* Expanded Letter Box - No Scroll & Fully Fit */
+        /* Expanded Letter Box - With Overflow/Scroll Safety */
         .letter { 
             position: absolute; bottom: 8px; left: 12px; width: calc(100% - 24px); height: 95%; 
             background: linear-gradient(135deg, #3a131f 0%, #240a12 100%); 
@@ -203,17 +203,18 @@
             transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
             padding: clamp(25px, 4vh, 35px) clamp(18px, 3.5vw, 28px); 
             color: var(--text-light-pearl); border-radius: 8px 8px 0 0; 
-            overflow: hidden; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow-y: auto; /* Added scroll safety */
+            text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
         }
         .letter-logo {
             font-family: 'Great Vibes', cursive; font-size: clamp(20px, 4.5vw, 30px);
             background: linear-gradient(to right, #ffb6c1, #ff4d6d);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px solid rgba(255, 77, 109, 0.2); width: 85%;
+            margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px solid rgba(255, 77, 109, 0.2); width: 85%;
         }
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; opacity: 0; }
-        .envelope-wrapper.open .letter { transform: translateY(clamp(-55%, -12vw, -75%)); z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.6); }
-        #typewriter-text { font-size: clamp(13px, 2.4vw, 16px); line-height: 1.6; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; }
+        .envelope-wrapper.open .letter { transform: translateY(clamp(-45%, -10vw, -60%)); z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.6); }
+        #typewriter-text { font-size: clamp(13px, 2.6vw, 17px); line-height: 1.6; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; margin-bottom: 10px; }
 
         /* Quiz */
         .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 117, 140, 0.2); padding: clamp(25px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 500px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
@@ -239,15 +240,16 @@
         .scratch-content { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #2b1119, #1a0f14); border: 2px solid rgba(255, 77, 109, 0.4); border-radius: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-bright-pink); text-align: center; padding: 20px; }
         canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; z-index: 2; cursor: pointer; }
 
-        /* Dua Card Animations & Design */
+        /* 3. UPGRADED DUA CARD (With Scroll & Perfect Styling) */
         .dua-card-hidden { opacity: 0; transform: scale(0.5) rotateX(-90deg); display: none; }
         .dua-card-visible { 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
             background: linear-gradient(135deg, rgba(43, 17, 25, 0.95), rgba(26, 15, 20, 0.98)); 
-            border: 2px solid #ff7eb3; border-radius: 20px; padding: 30px 20px; 
+            border: 2px solid #ff7eb3; border-radius: 20px; padding: 25px 20px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255, 117, 140, 0.4); 
             animation: cardFlipIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
             width: 100%; max-width: 450px; margin: auto;
+            max-height: 85vh; overflow-y: auto; /* Scroll Support for long text */
         }
         @keyframes cardFlipIn {
             0% { opacity: 0; transform: scale(0.5) rotateX(-90deg); }
@@ -303,7 +305,7 @@
         <button class="btn" id="btnScene2" onclick="nextScene(2)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 4. Counter -->
+    <!-- 4. Counter (UPDATED TIME LOGIC: 1 Year 27 Days) -->
     <div class="scene" id="scene3">
         <h2 class="font-galada grad-theme-light anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-bottom: 10px;">একসাথে কাটানো সময়...</h2>
         <p class="font-hind anim-fade-up delay-1" style="color: var(--text-light-pearl); font-size: clamp(15px, 3vw, 18px); font-style: italic; opacity: 0.85;">"প্রতিটি মুহূর্ত যেন শতাব্দীর সমান মূল্যবান"</p>
@@ -318,7 +320,7 @@
         <button class="btn anim-pop-in delay-2" onclick="nextScene(3)">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 5. Magic Gift Box (Continuous & Stationary Box with Heart Sprinkle) -->
+    <!-- 5. Magic Gift Box (CONTINUOUS + FIXED BOX ANIMATION) -->
     <div class="scene" id="scene4">
         <h2 class="font-hind grad-theme anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px;">ম্যাজিক উপহার ✨</h2>
         <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে ট্যাপ করো আর আমাদের ভালোবাসার বার্তাগুলো দেখো"</p>
@@ -351,7 +353,7 @@
         <button class="btn" id="btnScene4" onclick="nextScene(4)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 6. Envelope Scene -->
+    <!-- 6. Envelope Scene (EXPANDED BOX) -->
     <div class="scene" id="scene5">
         <h2 class="font-galada grad-theme-light anim-pop-in" style="font-size: clamp(30px, 6.5vw, 42px);">তোমার জন্য কিছু কথা...</h2>
         <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); margin-bottom: 10px; font-size: 16px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
@@ -425,33 +427,35 @@
         <button class="btn anim-fade-up delay-2" id="btnScene9" onclick="nextScene(9)">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 11. UPGRADED DUA PAGE -->
+    <!-- 11. NEW: UPGRADED DUA PAGE WITH SPECIFIC ROMANTIC TEXT -->
     <div class="scene" id="scene10">
-        <!-- Initial view before click -->
         <div id="duaInitial" class="anim-pop-in" style="cursor:pointer;" onclick="openDuaCard()">
             <h1 class="font-galada grad-theme" style="font-size: clamp(35px, 8vw, 55px); margin-bottom:10px;">আমাদের অন্তরের ফরিয়াদ ও ভালোবাসা 🌹</h1>
             <p class="font-anek" style="color: var(--text-soft-pink); font-size: 16px; margin-bottom:20px;">বিশেষ মোনাজাতটি দেখতে নিচে হাতটিতে ট্যাপ করো</p>
             <div style="font-size: 80px; filter: drop-shadow(0 0 20px rgba(255, 8, 68, 0.5)); animation: pulseHeart 1.5s infinite alternate;">🤲</div>
         </div>
         
-        <!-- Premium Hidden Card that opens on click -->
         <div id="duaCard" class="dua-card-hidden">
-            <h1 class="font-galada grad-theme" style="font-size: clamp(26px, 6vw, 36px); margin-bottom:15px; border-bottom: 1px solid rgba(255,77,109,0.3); padding-bottom:10px; width: 100%;">সারাজীবনের প্রার্থনা ও ভালোবাসা ✨</h1>
-            <p class="font-anek" style="font-size: clamp(14px, 3.5vw, 16px); line-height: 1.7; color: var(--text-light-pearl); margin: 15px 0; font-weight: 500;">
-                "শুভ জন্মদিনের অফুরন্ত ভালোবাসার পাশাপাশি মহান আল্লাহর দরবারে একটাই ফরিয়াদ—আমার এই প্রিয় মানুষটার মুখটা যেন কখনো ম্লান না হয়। ওর জীবনের প্রতিটা পদক্ষেপে তুমি সুখ, শান্তি ও সফলতা দান করো। আমাদের এই পবিত্র ভালোবাসার বন্ধন যেন দুনিয়া ও আখিরাতে অটুট থাকে, আর হাত ধরে জান্নাত পর্যন্ত যাওয়ার নসীব হয় আমাদের। আমিন।"
-            </p>
-            <p class="font-vibes grad-theme-light" style="font-size: clamp(22px, 5vw, 28px); margin-top: 15px;">~ Always Yours, Atike ~</p>
+            <h1 class="font-galada grad-theme" style="font-size: clamp(22px, 6vw, 30px); margin-bottom:15px; border-bottom: 1px solid rgba(255,77,109,0.3); padding-bottom:10px; width: 100%;">🌹 শুধু তোমার জন্য 🌹</h1>
+            <div class="font-anek" style="font-size: clamp(14px, 3.5vw, 16px); line-height: 1.7; color: var(--text-light-pearl); margin: 5px 0; font-weight: 500; text-align: left; width: 100%;">
+                শুভ জন্মদিন, আমার রুহি❤️🎂<br><br>
+                জীবনে অনেক কিছু চাওয়া হয়, কিন্তু কিছু মানুষকে পাওয়া যেন আল্লাহর পক্ষ থেকে বিশেষ এক উপহার। তুমি আমার জীবনে ঠিক তেমনই এক উপহার। ❤️<br><br>
+                হে আল্লাহ, আমার বউটির মুখের হাসি কখনো মুছে দিও না। তার চোখে অশ্রু এলে সেই অশ্রুর কারণ যেন আমি না হই। তার প্রতিটি স্বপ্ন পূরণ করে দিও, তার জীবনটা রহমত, বরকত আর ভালোবাসায় ভরে দিও। 🤲<br><br>
+                আমি তোমাকে শুধু এই জীবনের জন্য চাই না—আমি চাই, দুনিয়ার এই ভালোবাসার পর জান্নাতেও তোমার সঙ্গী হতে। 🥺❤️<br><br>
+                আল্লাহ আমাদের ভালোবাসাকে হালাল, পবিত্র ও বরকতময় করে রাখুন। যতদিন জীবন আছে, ততদিন যেন তোমার পাশে থাকতে পারি—তোমার হাসির কারণ হতে পারি, তোমার কষ্টের সময় তোমার আশ্রয় হতে পারি। 🤲❤️<br><br>
+                আর যদি আল্লাহ আমাকে আবারও জীবন বেছে নেওয়ার সুযোগ দেন,<br>তাহলে আমি আবারও তোমাকেই চাইব—<br>একই মানুষ, একই ভালোবাসা, একই তুমি। ❤️🥺<br><br>
+                শুভ জন্মদিন, আমার বউ।<br>আল্লাহ তোমাকে আমার জীবনে সারাজীবন ভালোবাসা হয়ে রাখুন। 🌹❤️
+            </div>
         </div>
     </div>
 
     <script>
         const SECRET_PIN = "1924";
-        const START_DATE = new Date("2022-05-10T00:00:00");
+        // Date Logic set to specifically calculate to 1 year, 0 months, 27 days relative to context date (Sep 16, 2026)
+        const START_DATE = new Date("2025-08-20T00:00:00");
         
-        // UPGRADED ROMANTIC LETTER CONTENT (Ending kept intact)
         const LETTER_CONTENT = "আমার হৃদস্পন্দন,\n\nচোখ বন্ধ করলেই তোমার মিষ্টি মুখটা ভেসে ওঠে। তুমি আমার জীবনের এমন এক অধ্যায়, যা পাওয়ার পর চাওয়ার আর কিছুই থাকে না। তোমার হাসিতে আমার সকাল আর তোমার টানে আমার পুরো রাত কেটে যায়। \n\nশুভ জন্মদিন!\nইতি, তোমার পাগল প্রেমিক..."; 
         
-        // EXPANDED INFINITE ROMANTIC WISHES
         const WISHES = [
             "তোমার হাসিটা পৃথিবীর সবচেয়ে সুন্দর ✨",
             "তুমি রেগে গেলে আরও বেশি মায়াবী লাগে 💖",
@@ -599,7 +603,6 @@
             }, 1000);
         }
 
-        // CONTINUOUS MAGIC GIFT BOX WITH HEART SPRINKLE
         let wishesShownCount = 0;
         let isWishShowing = false;
 
@@ -607,7 +610,7 @@
             if (isWishShowing) return;
             isWishShowing = true;
             
-            // Heart sprinkle effect on click
+            // Animation for Heart Sprinkles
             createHeartSprinkle();
 
             let popup = document.getElementById('wishPopup');
@@ -618,15 +621,14 @@
             textSpan.innerText = WISHES[messageIndex];
             
             wishesShownCount++;
-            badge.innerText = wishesShownCount; // Continuous counter
+            badge.innerText = wishesShownCount; 
             
             popup.classList.add('show'); 
             
             setTimeout(() => {
                 popup.classList.remove('show');
-                isWishShowing = false;
+                isWishShowing = false; 
                 
-                // Allow proceeding after viewing at least 3 messages
                 if(wishesShownCount >= 3) {
                     const btn = document.getElementById('btnScene4');
                     btn.style.opacity = '1'; 
@@ -719,7 +721,7 @@
             btn.style.pointerEvents = 'auto';
         }
 
-        // Dua Card Open Logic with 3D Flip/Scale
+        // Dua Card Open Logic
         function openDuaCard() {
             document.getElementById('duaInitial').style.display = 'none';
             const card = document.getElementById('duaCard');
