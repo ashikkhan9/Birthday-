@@ -158,42 +158,12 @@
             box-shadow: 0 0 10px rgba(230, 0, 51, 0.8);
         }
 
-        /* Round Logo above Envelope */
-        .envelope-top-logo-container {
-            margin-top: 10px;
-            margin-bottom: 25px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .circle-logo {
-            width: clamp(130px, 28vw, 160px);
-            height: clamp(130px, 28vw, 160px);
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 77, 109, 0.2) 0%, rgba(26, 15, 20, 0.8) 100%);
-            border: 2px solid rgba(255, 77, 109, 0.7);
-            box-shadow: 0 0 25px rgba(255, 77, 109, 0.5), inset 0 0 15px rgba(255, 77, 109, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(24px, 5vw, 30px);
-            color: var(--text-soft-pink);
-            text-shadow: 0 0 12px rgba(255, 77, 109, 0.9);
-            backdrop-filter: blur(10px);
-            animation: logoGlow 3s infinite alternate;
-        }
-        @keyframes logoGlow {
-            0% { box-shadow: 0 0 15px rgba(255, 77, 109, 0.4), inset 0 0 10px rgba(255, 77, 109, 0.2); }
-            100% { box-shadow: 0 0 35px rgba(255, 77, 109, 0.8), inset 0 0 20px rgba(255, 77, 109, 0.5); }
-        }
-
-        /* Envelope Styling */
+        /* Envelope Styling & On-Box Round Logo Seal */
         .envelope-wrapper { 
             position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); 
-            background: #2b1119; cursor: pointer; border-radius: 10px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 25px rgba(255, 77, 109, 0.15); 
-            transition: 0.5s; margin-top: 10px; 
+            background: #2b1119; cursor: pointer; border-radius: 12px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(255, 77, 109, 0.2); 
+            transition: 0.5s; margin: 30px auto 10px auto; 
         }
         .envelope-flap { 
             position: absolute; top: 0; left: 0; width: 100%; height: 60%; 
@@ -205,8 +175,48 @@
             position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; 
             background: linear-gradient(to top, #3d0d1b, #6b1b2f); 
             clip-path: polygon(0 100%, 0 0, 50% 65%, 100% 0, 100% 100%); 
-            z-index: 3; border-radius: 0 0 10px 10px; 
+            z-index: 3; border-radius: 0 0 12px 12px; 
         }
+
+        /* Circular Logo Positioned Directly ON the Envelope Seal */
+        .envelope-seal-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            width: clamp(100px, 22vw, 130px);
+            height: clamp(100px, 22vw, 130px);
+            border-radius: 50%;
+            background: radial-gradient(circle, #3d0d1b 0%, #1a0f14 100%);
+            border: 2px solid var(--text-bright-pink);
+            box-shadow: 0 0 20px rgba(255, 77, 109, 0.6), inset 0 0 10px rgba(255, 77, 109, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Great Vibes', cursive;
+            color: var(--text-soft-pink);
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        .envelope-seal-logo .seal-text {
+            font-size: clamp(18px, 4vw, 24px);
+            line-height: 1.1;
+        }
+        .envelope-seal-logo .seal-heart {
+            font-size: 16px;
+            margin: 2px 0;
+            filter: drop-shadow(0 0 5px var(--text-bright-pink));
+        }
+
+        /* Hide Logo Seal when Envelope Opens */
+        .envelope-wrapper.open .envelope-seal-logo {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+
         .letter { 
             position: absolute; bottom: 8px; left: 12px; width: calc(100% - 24px); height: 95%; 
             background: linear-gradient(135deg, #3a131f 0%, #240a12 100%); 
@@ -245,9 +255,6 @@
             margin: 20px auto; cursor: pointer; object-fit: cover; flex-shrink: 0;
             background: rgba(0,0,0,0.4); 
         }
-        
-        /* Voice Note */
-        .voice-btn { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--text-soft-pink), var(--text-primary-red)); display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 30px auto; box-shadow: 0 10px 30px rgba(230, 0, 51, 0.3); font-size: 35px; color: var(--bg-deep); transition: 0.3s; padding-left: 5px; }
 
         /* Scratch Card */
         .scratch-container { position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); margin: 0 auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); flex-shrink: 0; }
@@ -258,14 +265,9 @@
 <body>
 
     <!-- 3-Stage Audio Background Tracks -->
-    <!-- ১. শুরুর সাধারণ ব্যাকগ্রাউন্ড মিউজিক -->
     <audio id="bgMusic1" loop><source src="music1.mp3" type="audio/mpeg"></audio>
-    <!-- ২. ভিডিও ও হ্যাপি বার্থডে পেজের বিশেষ মিউজিক -->
     <audio id="bgMusic2" loop><source src="happy_birthday.mp3" type="audio/mpeg"></audio>
-    <!-- ৩. শেষের পেজের ফাইনাল মিউজিক -->
     <audio id="bgMusic3" loop><source src="finale_music.mp3" type="audio/mpeg"></audio>
-    
-    <audio id="voiceNote"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
 
     <div class="audio-toggle" id="audioToggle" onclick="toggleMute()">🎵</div>
     <div id="particles"></div>
@@ -347,7 +349,6 @@
             </svg>
         </div>
         
-        <!-- Styled Glassmorphic Bubble Message -->
         <div class="wish-popup" id="wishPopup">
             <span class="wish-counter-badge" id="wishBadge">0/7</span>
             <div style="font-size:26px; margin-bottom:8px; text-shadow: 0 0 10px var(--text-bright-pink);">✨</div>
@@ -356,21 +357,21 @@
         <button class="btn" id="btnScene4" onclick="nextScene(4)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 6. Envelope with Circular Logo Above -->
+    <!-- 6. Envelope Scene with Logo Directly ON the Box -->
     <div class="scene" id="scene5">
-        <!-- Circular Logo Container Above Envelope -->
-        <div class="envelope-top-logo-container anim-pop-in">
-            <div class="circle-logo">
-                Atike 💝 Ruhi
-            </div>
-        </div>
-
-        <h2 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(26px, 5.5vw, 36px);">তোমার জন্য কিছু কথা...</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); margin-bottom: 12px; font-size: 15px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
+        <h2 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(30px, 6.5vw, 42px); margin-top: auto;">তোমার জন্য কিছু কথা...</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); margin-bottom: 10px; font-size: 16px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
         
         <div class="envelope-wrapper anim-fade-up delay-2" onclick="openEnvelope(this)">
             <div class="envelope-flap"></div>
             <div class="envelope-front"></div>
+            
+            <div class="envelope-seal-logo">
+                <span class="seal-text">Atike</span>
+                <span class="seal-heart">💝</span>
+                <span class="seal-text">Ruhi</span>
+            </div>
+
             <div class="letter">
                 <div class="letter-logo">Atike 💝 Ruhi</div>
                 <div id="typewriter-text"></div>
@@ -403,7 +404,7 @@
         <button class="btn" id="btnScene7" onclick="nextScene(7)" style="opacity: 0; pointer-events: none; margin-top:20px;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 9. Video Cake (Triggers Happy Birthday Music - bgMusic2) -->
+    <!-- 9. Video Cake -->
     <div class="scene" id="scene8">
         <h2 class="font-hind grad-pink anim-fade-up" style="font-size: clamp(26px, 5.5vw, 36px); margin-bottom:8px;">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
         <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: 15px; opacity: 0.9;">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
@@ -415,17 +416,8 @@
         <button class="btn" id="btnScene8" onclick="nextScene(8)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 10. Voice Note -->
+    <!-- 10. Finale & Scratch Card -->
     <div class="scene" id="scene9">
-        <h1 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-top: auto;">আমার নিজের কণ্ঠে কিছু কথা...</h1>
-        <p class="font-hind anim-fade-up delay-1" style="color: var(--text-light-pearl); font-size: 17px; opacity: 0.85;">"যে কথাগুলো শুধু তোমার জন্য"</p>
-        <div class="voice-btn anim-pop-in delay-2" id="playVoiceBtn" onclick="toggleVoice()">▶</div>
-        <p id="voiceStatus" class="font-anek" style="margin-top: 15px; color: var(--text-bright-pink);"></p>
-        <button class="btn anim-fade-up delay-2" onclick="nextScene(9)">পরবর্তী পেজ</button>
-    </div>
-
-    <!-- 11. Finale & Scratch (Triggers Ending Music - bgMusic3) -->
-    <div class="scene" id="scene10">
         <h1 class="font-vibes grad-pink anim-pop-in" style="font-size: clamp(48px, 9vw, 80px); line-height: 1.2; margin-top: auto;">Happy Birthday! ✨</h1>
         <p class="font-galada grad-red anim-fade-up delay-1" style="font-size: clamp(20px, 4.5vw, 28px); margin-bottom: 20px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
         <p class="font-hind anim-fade-up delay-2" style="margin-bottom: 15px; color: var(--text-light-pearl); opacity: 0.9; font-size: 16px;">সারপ্রাইজ গিফট দেখতে কার্ডটি ঘষো</p>
@@ -443,7 +435,6 @@
         const START_DATE = new Date("2022-05-10T00:00:00");
         const LETTER_CONTENT = "আমার ভালোবাসা,\n\nতোমার জীবনে আসার পর থেকে তুমি আমার পুরো পৃথিবীটাকে সবচেয়ে সুন্দরভাবে পাল্টে দিয়েছ। তোমার হাসি আমার প্রতিদিনের শান্তি। \n\nশুভ জন্মদিন!\nইতি, তোমার পাগল প্রেমিক..."; 
         
-        // Exactly 7 Distinct Wishes
         const WISHES = [
             "তোমার হাসিটা পৃথিবীর সবচেয়ে সুন্দর ✨",
             "তুমি রেগে গেলে আরও বেশি মায়াবী লাগে 💖",
@@ -454,21 +445,18 @@
             "শুভ জন্মদিন আমার মিষ্টি রানি! ❤️"
         ];
 
-        // Music Elements
         const bgMusic1 = document.getElementById('bgMusic1');
         const bgMusic2 = document.getElementById('bgMusic2');
         const bgMusic3 = document.getElementById('bgMusic3');
         let currentAudio = bgMusic1;
         let isMuted = false;
 
-        // Touch Ripple Effect
         document.addEventListener('touchstart', e => {
             let ripple = document.createElement('div'); ripple.className = 'touch-ripple';
             ripple.style.left = (e.touches[0].pageX - 7) + 'px'; ripple.style.top = (e.touches[0].pageY - 7) + 'px';
             document.body.appendChild(ripple); setTimeout(() => ripple.remove(), 700);
         });
 
-        // Stardust Particles
         const pCont = document.getElementById('particles');
         for (let i = 0; i < 35; i++) {
             let f = document.createElement('div'); f.className = 'stardust';
@@ -480,7 +468,6 @@
             pCont.appendChild(f);
         }
 
-        // Scene Switching & Audio Controller
         function nextScene(num) {
             const cur = document.getElementById(`scene${num}`);
             const nextNum = num + 1;
@@ -501,15 +488,14 @@
                     
                     setTimeout(() => nxt.style.opacity = '1', 50);
 
-                    // Music Transition Logic
-                    if(nextNum === 8) { // Transition to Birthday Video Scene
+                    if(nextNum === 8) {
                         switchAudio(bgMusic2);
-                    } else if(nextNum === 10) { // Transition to Finale Scratch Card Scene
+                    } else if(nextNum === 9) {
                         switchAudio(bgMusic3);
                     }
 
                     if(nextNum === 3) startCounter();
-                    if(nextNum === 10) initScratchCard();
+                    if(nextNum === 9) initScratchCard();
                 }
             }, 800);
         }
@@ -525,7 +511,6 @@
             currentAudio.play().catch(()=>{});
         }
 
-        // Lock Control
         function checkPin() {
             if(document.getElementById('pinInput').value === SECRET_PIN) {
                 bgMusic1.volume = 0.5;
@@ -545,7 +530,6 @@
             document.getElementById('audioToggle').innerText = isMuted ? "🔇" : "🎵";
         }
 
-        // Fingerprint Scanner
         const scannerBox = document.getElementById('scannerBox');
         let scanInt;
         scannerBox.addEventListener('mousedown', startScan);
@@ -573,7 +557,6 @@
             if(document.getElementById('scanProgress').innerText !== "100% Match! সোলমেট ❤️") document.getElementById('scanProgress').innerText = "0%";
         }
 
-        // Counter
         function startCounter() {
             setInterval(() => {
                 let d = new Date(new Date() - START_DATE);
@@ -586,7 +569,6 @@
             }, 1000);
         }
 
-        // Gift Box Logic (Must Tap 7 Times)
         let wishesShownCount = 0;
         let isWishShowing = false;
 
@@ -610,7 +592,6 @@
                 popup.classList.remove('show');
                 isWishShowing = false;
                 
-                // Show 'Next Page' button only after 7 taps
                 if(wishesShownCount >= 7) {
                     const btn = document.getElementById('btnScene4');
                     btn.style.opacity = '1'; 
@@ -619,7 +600,6 @@
             }, 2600); 
         }
 
-        // Envelope Control
         let envOpen = false, charIdx = 0;
         function openEnvelope(el) {
             if(!envOpen) {
@@ -637,7 +617,6 @@
             }
         }
 
-        // Quiz Control
         function handleQuiz(isCorrect) {
             let fb = document.getElementById('quiz-feedback');
             if(isCorrect) {
@@ -647,7 +626,6 @@
             } else { fb.innerText = "উফ, ভুল হলো! আবার ভাবো..."; }
         }
 
-        // Magic Heart Burst
         function flyHeart() {
             const heartCont = document.getElementById('magicHeartContainer');
             const heart = document.getElementById('magicHeart');
@@ -675,7 +653,6 @@
             }, 1800);
         }
 
-        // Video Cake interaction & Auto-scroll Fix
         function blowCandle() {
             const btn = document.getElementById('btnScene8');
             btn.style.opacity = '1'; 
@@ -686,28 +663,6 @@
             }, 100);
         }
 
-        // Voice Note Player
-        const vAud = document.getElementById('voiceNote'); let vPlay = false;
-        function toggleVoice() {
-            if(!vPlay) { 
-                if(currentAudio) currentAudio.volume = 0.1; 
-                vAud.play(); 
-                document.getElementById('playVoiceBtn').innerHTML="⏸"; 
-                vPlay=true; 
-            } else { 
-                if(currentAudio) currentAudio.volume = 0.5; 
-                vAud.pause(); 
-                document.getElementById('playVoiceBtn').innerHTML="▶"; 
-                vPlay=false; 
-            }
-        }
-        vAud.onended = () => { 
-            document.getElementById('playVoiceBtn').innerHTML="▶"; 
-            vPlay=false; 
-            if(currentAudio) currentAudio.volume = 0.5; 
-        };
-
-        // Scratch Card
         function initScratchCard() {
             const cvs = document.getElementById('scratchCanvas'), ctx = cvs.getContext('2d'), r = cvs.parentElement.getBoundingClientRect();
             cvs.width = r.width; cvs.height = r.height;
