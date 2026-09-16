@@ -79,41 +79,91 @@
         @keyframes scanMove { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
         .scan-progress { margin-top: 15px; font-size: 18px; color: var(--rose-gold); font-weight: bold; }
 
-        /* Wish Jar */
-        .jar-container { position: relative; width: 140px; height: 180px; margin: 20px auto; cursor: pointer; }
-        .jar { width: 100%; height: 100%; border: 4px solid rgba(255,255,255,0.3); border-radius: 10px 10px 40px 40px; background: rgba(255,255,255,0.05); position: relative; overflow: hidden; box-shadow: inset 0 0 20px rgba(226,194,117,0.2); }
-        .jar-lid { position: absolute; top: -15px; left: 10%; width: 80%; height: 20px; background: var(--text-gold); border-radius: 5px; }
-        .wish-popup { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #333; padding: 15px; border-radius: 10px; width: 250px; text-align: center; font-size: 14px; font-weight: bold; font-style: italic; opacity: 0; pointer-events: none; transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 100; border: 2px solid var(--rose-gold); }
-        .wish-popup.show { opacity: 1; transform: translate(-50%, -80%); }
-
         /* Counter Grid */
         .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2vw, 20px); margin-top: 15px; width: 100%; max-width: 600px; }
         .counter-box { background: rgba(226, 194, 117, 0.05); padding: clamp(10px, 2vw, 20px); border-radius: 10px; border: 1px solid rgba(226, 194, 117, 0.3); }
         .counter-num { font-size: clamp(18px, 4vw, 28px); color: var(--text-gold); font-weight: bold; }
         .counter-label { font-size: clamp(10px, 1.5vw, 14px); color: var(--soft-white); }
 
-        /* Envelope */
-        .envelope-wrapper { position: relative; width: clamp(260px, 75vw, 450px); height: clamp(160px, 45vw, 280px); background: #2a1f2d; cursor: pointer; border-radius: 5px; box-shadow: 0 15px 40px rgba(0,0,0,0.7); transition: 0.5s; margin-top: 20px; }
-        .envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: #3b2b3f; clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top; transition: 1s cubic-bezier(0.4, 0, 0.2, 1); z-index: 4; }
-        .envelope-front { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: #312334; clip-path: polygon(0 100%, 50% 40%, 100% 100%, 100% 100%, 0 100%); z-index: 3; }
-        .letter { position: absolute; bottom: 0; left: 5%; width: 90%; height: 95%; background: linear-gradient(to bottom, #fdfbf7, #f3eed9); z-index: 2; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); padding: clamp(15px, 3vw, 25px); color: #2c2c2c; border-radius: 4px; overflow-y: auto; text-align: left; }
+        /* Magic Gift Box */
+        .magic-box-container { margin: 30px auto; cursor: pointer; transition: transform 0.2s; animation: pulseHeart 2s infinite alternate; }
+        .magic-box-container:active { transform: scale(0.9); }
+        .sparkle { animation: twinkle 1s infinite alternate; }
+        @keyframes twinkle { 0% { opacity: 0.2; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.2); } }
+        
+        .wish-popup { position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); background: #fff; color: #333; padding: 15px; border-radius: 10px; width: 250px; text-align: center; font-size: 14px; font-weight: bold; font-style: italic; opacity: 0; pointer-events: none; transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 100; border: 2px solid var(--rose-gold); }
+        .wish-popup.show { opacity: 1; transform: translate(-50%, -80%); }
+
+        /* Premium Envelope Update */
+        .envelope-wrapper { 
+            position: relative; width: clamp(260px, 75vw, 450px); height: clamp(160px, 45vw, 280px); 
+            background: #5a3c1e; 
+            cursor: pointer; border-radius: 8px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 20px rgba(226, 194, 117, 0.3); 
+            transition: 0.5s; margin-top: 20px; 
+        }
+        .envelope-flap { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 65%; 
+            background: linear-gradient(to bottom, #f0d592, #c5a059); 
+            clip-path: polygon(0 0, 100% 0, 50% 100%); 
+            transform-origin: top; transition: 1s cubic-bezier(0.4, 0, 0.2, 1); z-index: 4; 
+        }
+        
+        /* New Envelope Logo / Wax Seal */
+        .envelope-logo {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4a2c15, #2a1f2d);
+            border: 2px solid #e2c275;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e2c275;
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.6);
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .envelope-front { 
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(to top, #c5a059, #e2c275); 
+            clip-path: polygon(0 100%, 0 0, 50% 65%, 100% 0, 100% 100%); 
+            z-index: 3; border-radius: 0 0 8px 8px; 
+        }
+        .letter { 
+            position: absolute; bottom: 5px; left: 10px; width: calc(100% - 20px); height: 95%; 
+            background: linear-gradient(to bottom, #ffffff, #f4ecd8); 
+            z-index: 2; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+            padding: clamp(15px, 3vw, 25px); color: #2c2c2c; border-radius: 5px 5px 0 0; 
+            overflow-y: auto; text-align: left; 
+        }
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
-        .envelope-wrapper.open .letter { transform: translateY(clamp(-60%, -10vw, -80%)); z-index: 5; }
+        .envelope-wrapper.open .letter { transform: translateY(clamp(-60%, -10vw, -80%)); z-index: 5; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
         #typewriter-text { font-size: clamp(13px, 2.5vw, 18px); line-height: 1.6; white-space: pre-wrap; font-weight: bold; }
 
         /* Quiz */
         .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(226,194,117,0.3); padding: clamp(15px, 3vw, 30px); border-radius: 12px; width: 100%; max-width: 500px; }
         .quiz-btn { background: rgba(226,194,117,0.1); border: 1px solid var(--text-gold); color: var(--soft-white); padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-top: 10px; width: 100%; }
 
+        /* Glowing Magic Heart */
+        .magic-heart-container { position: relative; margin: 40px auto; cursor: pointer; animation: pulseHeart 1.5s infinite alternate; }
+        .magic-heart { font-size: clamp(60px, 15vw, 100px); filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.6)); transition: all 1.5s ease-in-out; }
+        .fly-heart { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        @keyframes pulseHeart { 0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.4)); } 100% { transform: scale(1.1); filter: drop-shadow(0 0 35px rgba(255, 20, 147, 1)); } }
+
         /* Video Cake */
         .cake-video { width: 100%; max-width: 250px; height: auto; border-radius: 15px; border: 2px solid var(--text-gold); box-shadow: 0 0 20px rgba(226,194,117,0.4); margin: 30px auto; cursor: pointer; }
         
-        /* Lantern */
-        .lantern-container { width: 100px; height: 140px; background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 100%); border-radius: 50px 50px 10px 10px; position: relative; margin: 30px auto; cursor: pointer; box-shadow: 0 0 30px rgba(255, 154, 158, 0.6); transition: 2s ease-in; }
-        .lantern-base { position: absolute; bottom: -10px; left: 25px; width: 50px; height: 10px; background: #555; border-radius: 2px; }
-        .lantern-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: yellow; filter: blur(15px); border-radius: 50%; animation: pulseText 2s infinite; }
-        .fly-away { transform: translateY(-100vh) scale(0.5); opacity: 0; }
-
         /* Voice Note */
         .voice-btn { width: 80px; height: 80px; border-radius: 50%; background: var(--text-gold); display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 20px auto; box-shadow: 0 0 20px var(--text-gold); font-size: 30px; color: var(--bg-color); }
 
@@ -185,26 +235,47 @@
         <button class="btn" onclick="nextScene(3)">পরবর্তী</button>
     </div>
 
-    <!-- 5. Wish Jar -->
+    <!-- 5. Magic Gift Box -->
     <div class="scene" id="scene4">
-        <h2 class="cinematic-text">ম্যাজিক চিরকুট ✨</h2>
-        <p class="micro-text">"বয়ামে ট্যাপ করো আর দেখো তোমার জন্য কী লেখা আছে"</p>
-        <div class="jar-container" onclick="showWish()">
-            <div class="jar-lid"></div>
-            <div class="jar">
-                <div class="lantern-glow" style="width:100%; height:100%; opacity:0.3; background:var(--rose-gold);"></div>
-            </div>
+        <h2 class="cinematic-text">ম্যাজিক উপহার ✨</h2>
+        <p class="micro-text">"বক্সটিতে ট্যাপ করো আর দেখো তোমার জন্য কী লেখা আছে"</p>
+        
+        <div class="magic-box-container" onclick="showWish()">
+            <svg width="140" height="140" viewBox="0 0 100 100" style="filter: drop-shadow(0 0 15px rgba(226, 194, 117, 0.6));">
+                <defs>
+                    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#b76e79" />
+                        <stop offset="100%" stop-color="#804d55" />
+                    </linearGradient>
+                    <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#e2c275" />
+                        <stop offset="100%" stop-color="#c5a059" />
+                    </linearGradient>
+                </defs>
+                <rect x="20" y="45" width="60" height="45" rx="4" fill="url(#boxGrad)"/>
+                <rect x="45" y="45" width="10" height="45" fill="#fff" opacity="0.6"/>
+                <rect x="15" y="32" width="70" height="13" rx="3" fill="url(#lidGrad)"/>
+                <path d="M 50 32 C 30 15, 20 35, 45 32 Z" fill="#e2c275"/>
+                <path d="M 50 32 C 70 15, 80 35, 55 32 Z" fill="#e2c275"/>
+                <circle cx="20" cy="20" r="2" fill="#fff" class="sparkle"/>
+                <circle cx="85" cy="25" r="3" fill="#e2c275" class="sparkle" style="animation-delay: 0.5s;"/>
+                <circle cx="15" cy="85" r="2" fill="#fff" class="sparkle" style="animation-delay: 0.8s;"/>
+            </svg>
         </div>
+        
         <div class="wish-popup" id="wishPopup"></div>
         <button class="btn" id="btnScene4" onclick="nextScene(4)" style="opacity: 0; pointer-events: none;">পরবর্তী</button>
     </div>
 
-    <!-- 6. Envelope -->
+    <!-- 6. Envelope (Added Logo Here) -->
     <div class="scene" id="scene5">
         <h2 class="cinematic-text">তোমার জন্য কিছু কথা...</h2>
         <p class="micro-text" style="margin-bottom:0;">খামের ওপর ট্যাপ করো 💌</p>
         <div class="envelope-wrapper" onclick="openEnvelope(this)">
-            <div class="envelope-flap"></div>
+            <div class="envelope-flap">
+                <!-- Golden Seal Logo -->
+                <div class="envelope-logo">Atike<br>Ruhi</div>
+            </div>
             <div class="envelope-front"></div>
             <div class="letter">
                 <div id="typewriter-text"></div>
@@ -225,24 +296,25 @@
         <button class="btn" id="btnScene6" onclick="nextScene(6)" style="opacity: 0; pointer-events: none;">পরবর্তী</button>
     </div>
 
-    <!-- 8. Lantern -->
+    <!-- 8. Magic Heart -->
     <div class="scene" id="scene7">
-        <h2 class="cinematic-text">একটি ইচ্ছে ফানুস...</h2>
-        <p class="micro-text">"ফানুসটিতে ট্যাপ করো, উড়ে যাক আমাদের সব স্বপ্ন"</p>
-        <div class="lantern-container" id="lantern" onclick="flyLantern()">
-            <div class="lantern-glow"></div>
-            <div class="lantern-base"></div>
+        <h2 class="cinematic-text">আমার হৃদয়ের স্পন্দন...</h2>
+        <p class="micro-text">"হার্টটিতে ট্যাপ করো, উড়ে যাক আমাদের সব ভালোবাসা"</p>
+        
+        <div class="magic-heart-container" id="magicHeart" onclick="flyHeart()">
+            <div class="magic-heart">💖</div>
         </div>
-        <button class="btn" id="btnScene7" onclick="nextScene(7)" style="opacity: 0; pointer-events: none; margin-top:50px;">পরবর্তী</button>
+        
+        <button class="btn" id="btnScene7" onclick="nextScene(7)" style="opacity: 0; pointer-events: none; margin-top:30px;">পরবর্তী</button>
     </div>
 
     <!-- 9. Video Cake -->
     <div class="scene" id="scene8">
-        <h2 class="cinematic-text">মোমবাতি নেভাও! 🎂</h2>
-        <p class="micro-text">"চোখ বন্ধ করে একটা উইশ করো..."</p>
+        <h2 class="cinematic-text">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
+        <p class="micro-text">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
         
         <video id="birthdayVideo" class="cake-video" autoplay loop muted playsinline onclick="blowCandle()">
-            <source src="video.mp4" type="video/mp4">
+            <source src="7661.mp4" type="video/mp4">
         </video>
 
         <button class="btn" id="btnScene8" onclick="nextScene(8)" style="opacity: 0; pointer-events: none;">পরবর্তী</button>
@@ -381,7 +453,7 @@
             }, 1000);
         }
 
-        // Wish Jar
+        // Wish Box
         let wishesShown = 0;
         function showWish() {
             let popup = document.getElementById('wishPopup');
@@ -421,16 +493,16 @@
             } else { fb.innerText = "উফ, ভুল হলো! আবার ভাবো..."; }
         }
 
-        // Lantern
-        function flyLantern() {
-            document.getElementById('lantern').classList.add('fly-away');
+        // Magic Heart 
+        function flyHeart() {
+            document.getElementById('magicHeart').classList.add('fly-heart');
             setTimeout(() => {
                 document.getElementById('btnScene7').style.opacity = '1';
                 document.getElementById('btnScene7').style.pointerEvents = 'auto';
             }, 1500);
         }
 
-        // Video Cake
+        // Video Cake interaction
         function blowCandle() {
             document.getElementById('btnScene8').style.opacity = '1'; document.getElementById('btnScene8').style.pointerEvents = 'auto';
         }
