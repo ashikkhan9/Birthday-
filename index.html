@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday, My World</title>
-    <!-- Premium Fonts (Added Pacifico for the new round text) -->
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700&family=Galada&family=Hind+Siliguri:wght@400;600;700&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;600;700&family=Galada&family=Hind+Siliguri:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -158,12 +158,12 @@
             box-shadow: 0 0 10px rgba(230, 0, 51, 0.8);
         }
 
-        /* Envelope Styling */
+        /* Envelope Styling & On-Box Round Logo Seal */
         .envelope-wrapper { 
             position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); 
-            background: #2b1119; cursor: pointer; border-radius: 10px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 25px rgba(255, 77, 109, 0.15); 
-            transition: 0.5s; margin-top: 30px; 
+            background: #2b1119; cursor: pointer; border-radius: 12px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(255, 77, 109, 0.2); 
+            transition: 0.5s; margin: 30px auto 10px auto; 
         }
         .envelope-flap { 
             position: absolute; top: 0; left: 0; width: 100%; height: 60%; 
@@ -175,28 +175,48 @@
             position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; 
             background: linear-gradient(to top, #3d0d1b, #6b1b2f); 
             clip-path: polygon(0 100%, 0 0, 50% 65%, 100% 0, 100% 100%); 
-            z-index: 3; border-radius: 0 0 10px 10px; 
-        }
-        
-        /* Wax Seal on the Flap */
-        .wax-seal {
-            position: absolute;
-            bottom: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 38px;
-            height: 38px;
-            background: radial-gradient(circle, #ff4d6d, #b30026);
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            z-index: 5;
+            z-index: 3; border-radius: 0 0 12px 12px; 
         }
 
-        /* Letter Inside */
+        /* Circular Logo Positioned Directly ON the Envelope Seal */
+        .envelope-seal-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            width: clamp(100px, 22vw, 130px);
+            height: clamp(100px, 22vw, 130px);
+            border-radius: 50%;
+            background: radial-gradient(circle, #3d0d1b 0%, #1a0f14 100%);
+            border: 2px solid var(--text-bright-pink);
+            box-shadow: 0 0 20px rgba(255, 77, 109, 0.6), inset 0 0 10px rgba(255, 77, 109, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Great Vibes', cursive;
+            color: var(--text-soft-pink);
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        .envelope-seal-logo .seal-text {
+            font-size: clamp(18px, 4vw, 24px);
+            line-height: 1.1;
+        }
+        .envelope-seal-logo .seal-heart {
+            font-size: 16px;
+            margin: 2px 0;
+            filter: drop-shadow(0 0 5px var(--text-bright-pink));
+        }
+
+        /* Hide Logo Seal when Envelope Opens */
+        .envelope-wrapper.open .envelope-seal-logo {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+
         .letter { 
             position: absolute; bottom: 8px; left: 12px; width: calc(100% - 24px); height: 95%; 
             background: linear-gradient(135deg, #3a131f 0%, #240a12 100%); 
@@ -206,35 +226,12 @@
             color: var(--text-light-pearl); border-radius: 8px 8px 0 0; 
             overflow-y: auto; text-align: center; display: flex; flex-direction: column; align-items: center;
         }
-        
-        /* New Circular Font Badge Inside the Letter */
-        .letter-round-seal {
-            width: 85px;
-            height: 85px;
-            background: radial-gradient(circle, rgba(255, 77, 109, 0.15) 0%, rgba(36, 10, 18, 0.6) 100%);
-            border: 2px dashed rgba(255, 182, 193, 0.7);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Pacifico', cursive; /* The new beautiful font */
-            font-size: 16px;
-            color: var(--text-soft-pink);
-            box-shadow: 0 0 15px rgba(255, 77, 109, 0.3), inset 0 0 10px rgba(255, 77, 109, 0.2);
-            margin: 0 auto 15px auto;
-            flex-shrink: 0;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-            animation: sealPulse 2.5s infinite alternate;
+        .letter-logo {
+            font-family: 'Great Vibes', cursive; font-size: clamp(20px, 4.5vw, 28px);
+            background: linear-gradient(to right, #ffb6c1, #ff4d6d);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(255, 77, 109, 0.2); width: 80%;
         }
-        .letter-round-seal span {
-            line-height: 1.1;
-        }
-        @keyframes sealPulse {
-            0% { box-shadow: 0 0 10px rgba(255, 77, 109, 0.3), inset 0 0 8px rgba(255, 77, 109, 0.2); }
-            100% { box-shadow: 0 0 25px rgba(255, 77, 109, 0.7), inset 0 0 15px rgba(255, 77, 109, 0.4); }
-        }
-
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; opacity: 0; }
         .envelope-wrapper.open .letter { transform: translateY(clamp(-50%, -10vw, -70%)); z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.6); }
         #typewriter-text { font-size: clamp(13px, 2.2vw, 16px); line-height: 1.7; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; }
@@ -258,9 +255,6 @@
             margin: 20px auto; cursor: pointer; object-fit: cover; flex-shrink: 0;
             background: rgba(0,0,0,0.4); 
         }
-        
-        /* Voice Note */
-        .voice-btn { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, var(--text-soft-pink), var(--text-primary-red)); display: flex; justify-content: center; align-items: center; cursor: pointer; margin: 30px auto; box-shadow: 0 10px 30px rgba(230, 0, 51, 0.3); font-size: 35px; color: var(--bg-deep); transition: 0.3s; padding-left: 5px; }
 
         /* Scratch Card */
         .scratch-container { position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); margin: 0 auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); flex-shrink: 0; }
@@ -271,14 +265,9 @@
 <body>
 
     <!-- 3-Stage Audio Background Tracks -->
-    <!-- ১. শুরুর সাধারণ ব্যাকগ্রাউন্ড মিউজিক -->
     <audio id="bgMusic1" loop><source src="music1.mp3" type="audio/mpeg"></audio>
-    <!-- ২. ভিডিও ও হ্যাপি বার্থডে পেজের বিশেষ মিউজিক -->
     <audio id="bgMusic2" loop><source src="happy_birthday.mp3" type="audio/mpeg"></audio>
-    <!-- ৩. শেষের পেজের ফাইনাল মিউজিক -->
     <audio id="bgMusic3" loop><source src="finale_music.mp3" type="audio/mpeg"></audio>
-    
-    <audio id="voiceNote"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
 
     <div class="audio-toggle" id="audioToggle" onclick="toggleMute()">🎵</div>
     <div id="particles"></div>
@@ -335,7 +324,7 @@
         <button class="btn anim-pop-in delay-2" onclick="nextScene(3)">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 5. Magic Gift Box -->
+    <!-- 5. Magic Gift Box (7 Wishes Required) -->
     <div class="scene" id="scene4">
         <h2 class="font-hind grad-pink anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px; margin-top: auto;">ম্যাজিক উপহার ✨</h2>
         <p class="font-anek grad-red anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে পরপর ৭ বার ট্যাপ করে গোপন বার্তাগুলো দেখো"</p>
@@ -368,23 +357,23 @@
         <button class="btn" id="btnScene4" onclick="nextScene(4)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 6. Envelope (Round Logo Placed INSIDE the Letter) -->
+    <!-- 6. Envelope Scene with Logo Directly ON the Box -->
     <div class="scene" id="scene5">
-        <h2 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(26px, 5.5vw, 36px);">তোমার জন্য কিছু কথা...</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); margin-bottom: 12px; font-size: 15px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
+        <h2 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(30px, 6.5vw, 42px); margin-top: auto;">তোমার জন্য কিছু কথা...</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); margin-bottom: 10px; font-size: 16px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
         
         <div class="envelope-wrapper anim-fade-up delay-2" onclick="openEnvelope(this)">
-            <div class="envelope-flap">
-                <div class="wax-seal">💌</div>
-            </div>
+            <div class="envelope-flap"></div>
             <div class="envelope-front"></div>
+            
+            <div class="envelope-seal-logo">
+                <span class="seal-text">Atike</span>
+                <span class="seal-heart">💝</span>
+                <span class="seal-text">Ruhi</span>
+            </div>
+
             <div class="letter">
-                <!-- Circular Logo in New Font Inside the Letter -->
-                <div class="letter-round-seal">
-                    <span>Atike</span>
-                    <span style="font-size: 14px; margin: 2px 0;">💝</span>
-                    <span>Ruhi</span>
-                </div>
+                <div class="letter-logo">Atike 💝 Ruhi</div>
                 <div id="typewriter-text"></div>
             </div>
         </div>
@@ -427,17 +416,8 @@
         <button class="btn" id="btnScene8" onclick="nextScene(8)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 10. Voice Note -->
+    <!-- 10. Finale & Scratch Card -->
     <div class="scene" id="scene9">
-        <h1 class="font-galada grad-pink anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-top: auto;">আমার নিজের কণ্ঠে কিছু কথা...</h1>
-        <p class="font-hind anim-fade-up delay-1" style="color: var(--text-light-pearl); font-size: 17px; opacity: 0.85;">"যে কথাগুলো শুধু তোমার জন্য"</p>
-        <div class="voice-btn anim-pop-in delay-2" id="playVoiceBtn" onclick="toggleVoice()">▶</div>
-        <p id="voiceStatus" class="font-anek" style="margin-top: 15px; color: var(--text-bright-pink);"></p>
-        <button class="btn anim-fade-up delay-2" onclick="nextScene(9)">পরবর্তী পেজ</button>
-    </div>
-
-    <!-- 11. Finale & Scratch -->
-    <div class="scene" id="scene10">
         <h1 class="font-vibes grad-pink anim-pop-in" style="font-size: clamp(48px, 9vw, 80px); line-height: 1.2; margin-top: auto;">Happy Birthday! ✨</h1>
         <p class="font-galada grad-red anim-fade-up delay-1" style="font-size: clamp(20px, 4.5vw, 28px); margin-bottom: 20px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
         <p class="font-hind anim-fade-up delay-2" style="margin-bottom: 15px; color: var(--text-light-pearl); opacity: 0.9; font-size: 16px;">সারপ্রাইজ গিফট দেখতে কার্ডটি ঘষো</p>
@@ -508,11 +488,14 @@
                     
                     setTimeout(() => nxt.style.opacity = '1', 50);
 
-                    if(nextNum === 8) switchAudio(bgMusic2);
-                    else if(nextNum === 10) switchAudio(bgMusic3);
+                    if(nextNum === 8) {
+                        switchAudio(bgMusic2);
+                    } else if(nextNum === 9) {
+                        switchAudio(bgMusic3);
+                    }
 
                     if(nextNum === 3) startCounter();
-                    if(nextNum === 10) initScratchCard();
+                    if(nextNum === 9) initScratchCard();
                 }
             }, 800);
         }
@@ -591,6 +574,7 @@
 
         function showWish() {
             if (isWishShowing) return;
+            
             isWishShowing = true;
             let popup = document.getElementById('wishPopup');
             let textSpan = document.getElementById('wishText');
@@ -607,6 +591,7 @@
             setTimeout(() => {
                 popup.classList.remove('show');
                 isWishShowing = false;
+                
                 if(wishesShownCount >= 7) {
                     const btn = document.getElementById('btnScene4');
                     btn.style.opacity = '1'; 
@@ -672,30 +657,11 @@
             const btn = document.getElementById('btnScene8');
             btn.style.opacity = '1'; 
             btn.style.pointerEvents = 'auto';
+            
             setTimeout(() => {
                 btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
         }
-
-        const vAud = document.getElementById('voiceNote'); let vPlay = false;
-        function toggleVoice() {
-            if(!vPlay) { 
-                if(currentAudio) currentAudio.volume = 0.1; 
-                vAud.play(); 
-                document.getElementById('playVoiceBtn').innerHTML="⏸"; 
-                vPlay=true; 
-            } else { 
-                if(currentAudio) currentAudio.volume = 0.5; 
-                vAud.pause(); 
-                document.getElementById('playVoiceBtn').innerHTML="▶"; 
-                vPlay=false; 
-            }
-        }
-        vAud.onended = () => { 
-            document.getElementById('playVoiceBtn').innerHTML="▶"; 
-            vPlay=false; 
-            if(currentAudio) currentAudio.volume = 0.5; 
-        };
 
         function initScratchCard() {
             const cvs = document.getElementById('scratchCanvas'), ctx = cvs.getContext('2d'), r = cvs.parentElement.getBoundingClientRect();
