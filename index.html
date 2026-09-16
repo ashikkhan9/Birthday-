@@ -81,16 +81,14 @@
         @keyframes starFloat { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 20%, 80% { opacity: 0.5; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
         @keyframes starGlow { 0% { box-shadow: 0 0 2px #ff7eb3; } 100% { box-shadow: 0 0 10px #ff7eb3, 0 0 20px var(--text-light-pearl); } }
 
-        /* --- FIXED SCENE LAYOUT (Allows Scrolling on Mobile) --- */
+        /* Scene Layout */
         .scene {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none;
-            flex-direction: column; justify-content: flex-start; align-items: center; z-index: 10;
-            padding: 40px 20px 100px 20px; opacity: 0; transition: opacity 1s ease, transform 1s ease;
+            position: absolute; width: 100%; max-width: 600px; height: 100%; display: none;
+            flex-direction: column; justify-content: center; align-items: center; z-index: 10;
+            padding: clamp(20px, 5vw, 40px); opacity: 0; transition: opacity 1s ease, transform 1s ease;
             transform: translateY(15px); text-align: center;
-            overflow-y: auto; /* Enables scrolling for small devices */
         }
         .scene.active { display: flex; opacity: 1; transform: translateY(0); }
-        .scene::before, .scene::after { content: ''; margin: auto; } /* Keeps content centered but scrollable */
 
         /* Buttons */
         .btn {
@@ -98,8 +96,7 @@
             color: #ffb199; padding: clamp(12px, 2.5vw, 15px) clamp(30px, 5vw, 45px); 
             font-size: clamp(15px, 2.5vw, 18px); font-family: 'Hind Siliguri', sans-serif; 
             border-radius: 40px; cursor: pointer; transition: all 0.4s ease;
-            margin-top: 35px; margin-bottom: 20px; z-index: 100; font-weight: 600; letter-spacing: 1px; backdrop-filter: blur(5px);
-            flex-shrink: 0; position: relative;
+            margin-top: 25px; z-index: 50; font-weight: 600; letter-spacing: 1px; backdrop-filter: blur(5px);
         }
         .btn:hover { background: #ff0844; color: var(--text-light-pearl); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 8, 68, 0.3); }
 
@@ -108,7 +105,7 @@
             background: rgba(255, 255, 255, 0.03); padding: clamp(35px, 6vw, 50px); 
             border-radius: 24px; border: 1px solid rgba(255, 117, 140, 0.25); 
             backdrop-filter: blur(20px); box-shadow: 0 25px 50px rgba(0,0,0,0.5); 
-            width: 100%; max-width: 420px; flex-shrink: 0;
+            width: 100%; max-width: 420px;
         }
         .lock-box input { 
             background: rgba(0,0,0,0.25); border: 1px solid rgba(255, 117, 140, 0.3); 
@@ -120,23 +117,24 @@
         @keyframes shakeError { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
 
         /* Cute Art */
-        .cute-art { margin-bottom: 20px; width: clamp(150px, 20vw, 180px); animation: floatArt 4s ease-in-out infinite; flex-shrink: 0; }
+        .cute-art { margin-bottom: 20px; width: clamp(150px, 20vw, 180px); animation: floatArt 4s ease-in-out infinite; }
         @keyframes floatArt { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
         /* Scanner */
-        .scanner-box { position: relative; width: 130px; height: 160px; margin: 25px auto; display: flex; justify-content: center; align-items: center; border: 2px dashed rgba(255, 117, 140, 0.4); border-radius: 25px; cursor: pointer; overflow: hidden; background: rgba(255,255,255,0.02); flex-shrink: 0; }
+        .scanner-box { position: relative; width: 130px; height: 160px; margin: 25px auto; display: flex; justify-content: center; align-items: center; border: 2px dashed rgba(255, 117, 140, 0.4); border-radius: 25px; cursor: pointer; overflow: hidden; background: rgba(255,255,255,0.02); }
         .fingerprint { font-size: 65px; color: rgba(255, 117, 140, 0.3); }
         .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: #ff7eb3; box-shadow: 0 0 15px #ff7eb3; display: none; animation: scanMove 1.5s infinite linear; }
         @keyframes scanMove { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
 
         /* Counter Grid */
-        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2.5vw, 20px); margin-top: 20px; width: 100%; max-width: 600px; flex-shrink: 0; }
+        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2.5vw, 20px); margin-top: 20px; width: 100%; max-width: 600px; }
         .counter-box { background: rgba(255,255,255,0.03); padding: clamp(15px, 3vw, 20px); border-radius: 14px; border: 1px solid rgba(255, 117, 140, 0.15); backdrop-filter: blur(8px); }
         .counter-num { font-size: clamp(22px, 4.5vw, 32px); color: #ff0844; font-weight: bold; font-family: 'Anek Bangla', sans-serif;}
         .counter-label { font-size: clamp(12px, 1.5vw, 15px); color: var(--text-light-pearl); opacity: 0.8; font-family: 'Hind Siliguri', sans-serif;}
 
-        /* Magic Gift Box */
-        .magic-box-container { margin: 30px auto; cursor: pointer; position: relative; flex-shrink: 0; }
+        /* Magic Gift Box & Popup */
+        .magic-box-container { margin: 30px auto; cursor: pointer; position: relative; }
+        
         .wish-popup { 
             position: absolute; top: 32%; left: 50%; 
             transform: translate(-50%, -50%) scale(0.8); 
@@ -147,6 +145,10 @@
             backdrop-filter: blur(15px); opacity: 0; pointer-events: none; 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 100; 
         }
+        .wish-popup::after {
+            content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+            border-width: 12px 12px 0; border-style: solid; border-color: #ff7eb3 transparent; display: block; width: 0;
+        }
         .wish-popup.show { opacity: 1; transform: translate(-50%, -65%) scale(1); }
         .wish-counter-badge {
             position: absolute; top: -12px; right: 20px; background: #ff0844;
@@ -154,12 +156,12 @@
             box-shadow: 0 0 10px rgba(255, 8, 68, 0.8); font-family: 'Hind Siliguri', sans-serif;
         }
 
-        /* --- ENVELOPE SCENE --- */
+        /* Envelope */
         .envelope-wrapper { 
             position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); 
             background: #2b1119; cursor: pointer; border-radius: 12px; 
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(255, 117, 140, 0.2); 
-            transition: 0.5s; margin: 30px auto; flex-shrink: 0;
+            transition: 0.5s; margin: 30px auto; 
         }
         .envelope-flap { 
             position: absolute; top: 0; left: 0; width: 100%; height: 60%; 
@@ -191,6 +193,7 @@
         }
         .envelope-seal-logo span.name { font-size: clamp(18px, 4vw, 22px); line-height: 1; z-index: 2; }
         .envelope-seal-logo span.icon { font-size: 12px; margin: 2px 0; z-index: 2; filter: drop-shadow(0 0 3px #fff); }
+
         .envelope-wrapper.open .envelope-seal-logo { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
 
         /* The Expanding Letter Box */
@@ -211,22 +214,21 @@
         }
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; opacity: 0; }
         
-        /* THIS MAKES THE LETTER TALLER ON CLICK */
         .envelope-wrapper.open .letter { 
-            height: 160%; /* Expands its own height */
-            transform: translateY(-35%); /* Moves up perfectly */
+            height: 160%; 
+            transform: translateY(-35%); 
             z-index: 5; 
             box-shadow: 0 -10px 30px rgba(0,0,0,0.6); 
         }
         #typewriter-text { font-size: clamp(13px, 2.4vw, 16px); line-height: 1.6; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; margin-bottom: 10px;}
 
         /* Quiz */
-        .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 117, 140, 0.2); padding: clamp(25px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 500px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); flex-shrink: 0; }
+        .quiz-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255, 117, 140, 0.2); padding: clamp(25px, 5vw, 40px); border-radius: 20px; width: 100%; max-width: 500px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         .quiz-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255, 117, 140, 0.3); color: var(--text-light-pearl); padding: 14px; border-radius: 12px; cursor: pointer; transition: 0.3s; margin-top: 15px; width: 100%; font-family: 'Hind Siliguri', sans-serif; font-size: 16px; }
         .quiz-btn:hover { background: rgba(255, 117, 140, 0.15); border-color: #ff0844; color: #ffb199; transform: translateX(5px); }
 
         /* Magic Heart */
-        .magic-heart-container { position: relative; margin: 40px auto; cursor: pointer; animation: pulseHeart 1.5s infinite alternate; flex-shrink: 0; }
+        .magic-heart-container { position: relative; margin: 40px auto; cursor: pointer; animation: pulseHeart 1.5s infinite alternate; }
         .magic-heart { font-size: clamp(70px, 15vw, 110px); filter: drop-shadow(0 0 25px rgba(230, 0, 51, 0.5)); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
         .fly-heart { transform: scale(3) translateY(-20px); opacity: 0; filter: drop-shadow(0 0 60px rgba(230, 0, 51, 1)) blur(5px); }
         @keyframes pulseHeart { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
@@ -236,11 +238,11 @@
             width: 100%; max-width: 280px; min-height: 280px; height: auto; 
             border-radius: 18px; border: 2px solid rgba(255, 77, 109, 0.4); 
             box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(255, 117, 140, 0.15); 
-            margin: 20px auto; cursor: pointer; object-fit: cover; background: rgba(0,0,0,0.4); flex-shrink: 0;
+            margin: 20px auto; cursor: pointer; object-fit: cover; background: rgba(0,0,0,0.4); 
         }
 
         /* Scratch Card */
-        .scratch-container { position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); margin: 0 auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); flex-shrink: 0;}
+        .scratch-container { position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); margin: 0 auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
         .scratch-content { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #2b1119, #1a0f14); border: 2px solid rgba(255, 77, 109, 0.4); border-radius: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-bright-pink); text-align: center; padding: 20px; }
         canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; z-index: 2; cursor: pointer; }
 
@@ -252,8 +254,8 @@
             border: 2px solid #ff7eb3; border-radius: 20px; padding: 30px 20px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255, 117, 140, 0.4); 
             animation: cardFlipIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
-            width: 100%; max-width: 450px; margin: auto; flex-shrink: 0;
-            max-height: 80vh; overflow-y: auto; /* Scroll Support for long text */
+            width: 100%; max-width: 450px; margin: auto;
+            max-height: 85vh; overflow-y: auto; 
         }
         @keyframes cardFlipIn {
             0% { opacity: 0; transform: scale(0.5) rotateX(-90deg); }
@@ -263,7 +265,7 @@
 </head>
 <body>
 
-    <!-- Audios (Files accurately named as requested) -->
+    <!-- Audios -->
     <audio id="bgMusic1" loop src="bgmusic1.mp3" preload="auto"></audio>
     <audio id="bgMusic2" loop src="bgmusic2.mp3" preload="auto"></audio>
     <audio id="bgMusic3" loop src="bgmusic3.mp4" preload="auto"></audio>
@@ -275,8 +277,8 @@
     <!-- 1. Lock Screen -->
     <div class="scene active" id="scene0">
         <div class="lock-box anim-pop-in">
-            <h2 class="font-galada grad-theme" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">তোমার চলার পথ সুগম হোক✨</h2>
-            <p class="font-anek" style="font-size: 16px; color: var(--text-soft-pink); margin-bottom: 25px; opacity: 0.9;">প্রবেশ করত তোমার আর আমার বয়স দাও...</p>
+            <h2 class="font-galada grad-theme" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">তোমার পথ চলা সুগম হোক ✨</h2>
+            <p class="font-anek" style="font-size: 16px; color: var(--text-soft-pink); margin-bottom: 25px; opacity: 0.9;">প্রবেশ করতে আমাদের বয়স লিখ...</p>
             <input type="password" id="pinInput" maxlength="4" placeholder="••••">
             <br><button class="btn" onclick="checkPin()" style="width: 100%;">আনলক করো</button>
         </div>
@@ -309,7 +311,7 @@
         <button class="btn" id="btnScene2" onclick="nextScene(2)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 4. Counter (1 Year 27 Days Start Fixed) -->
+    <!-- 4. Counter -->
     <div class="scene" id="scene3">
         <h2 class="font-galada grad-theme-light anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-bottom: 10px;">একসাথে কাটানো সময়...</h2>
         <p class="font-hind anim-fade-up delay-1" style="color: var(--text-light-pearl); font-size: clamp(15px, 3vw, 18px); font-style: italic; opacity: 0.85;">"প্রতিটি মুহূর্ত যেন শতাব্দীর সমান মূল্যবান"</p>
@@ -327,7 +329,7 @@
     <!-- 5. Magic Gift Box -->
     <div class="scene" id="scene4">
         <h2 class="font-hind grad-theme anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px;">ম্যাজিক উপহার ✨</h2>
-        <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে যতবার ট্যাপ করবে ততবার ভালোবাসার বার্তাগুলো দেখবে"</p>
+        <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে যতবার ট্যাপ করবে ততবার ভালোবাসার মেসেজ দেখবে"</p>
         
         <div class="magic-box-container anim-pop-in delay-2" id="magicBoxWrap" onclick="showWish(event)">
             <svg width="150" height="150" viewBox="0 0 100 100">
@@ -416,9 +418,9 @@
         <button class="btn" id="btnScene8" onclick="nextScene(8)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 10. Scratch Card (Apology Prank) -->
+    <!-- 10. Scratch Card -->
     <div class="scene" id="scene9">
-        <h1 class="font-vibes grad-theme-light anim-pop-in" style="font-size: clamp(48px, 9vw, 80px); line-height: 1.2;">Happy Birthday! ✨</h1>
+        <h1 class="font-vibes grad-theme-light anim-pop-in" style="font-size: clamp(48px, 9vw, 80px); line-height: 1.2;"></h1>
         <p class="font-galada grad-theme anim-fade-up delay-1" style="font-size: clamp(20px, 4.5vw, 28px); margin-bottom: 20px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
         <p class="font-hind anim-fade-up delay-2" style="margin-bottom: 15px; color: var(--text-light-pearl); opacity: 0.9; font-size: 16px;">তোমার জন্য পৃথিবীর সবচেয়ে দামি গিফট রেখেছি, কার্ডটি ঘষে দেখো! 🙈</p>
         <div class="scratch-container anim-pop-in delay-2">
@@ -430,10 +432,10 @@
         <button class="btn anim-fade-up delay-2" id="btnScene9" onclick="nextScene(9)">পরবর্তী পেজ</button>
     </div>
 
-    <!-- 11. DUA PAGE (Scrollable Card) -->
+    <!-- 11. DUA PAGE -->
     <div class="scene" id="scene10">
         <div id="duaInitial" class="anim-pop-in" style="cursor:pointer;" onclick="openDuaCard()">
-            <h1 class="font-galada grad-theme" style="font-size: clamp(35px, 8vw, 55px); margin-bottom:10px;">তোমার হাসিতেই সুখ 🥰🌹</h1>
+            <h1 class="font-galada grad-theme" style="font-size: clamp(35px, 8vw, 55px); margin-bottom:10px;">তোমার হাসিতেই আমাদের সুখ 🥰 🌹</h1>
             <p class="font-anek" style="color: var(--text-soft-pink); font-size: 16px; margin-bottom:20px;">হাতটিতে ট্যাপ করো</p>
             <div style="font-size: 80px; filter: drop-shadow(0 0 20px rgba(255, 8, 68, 0.5)); animation: pulseHeart 1.5s infinite alternate;">🤲</div>
         </div>
@@ -454,7 +456,6 @@
 
     <script>
         const SECRET_PIN = "1924";
-        // Fixed to ensure 1 Year and 27 days on Sep 16, 2026.
         const START_DATE = new Date("2025-08-20T00:00:00"); 
         
         const LETTER_CONTENT = "আমার হৃদস্পন্দন,\n\nচোখ বন্ধ করলেই তোমার মিষ্টি মুখটা ভেসে ওঠে। তুমি আমার জীবনের এমন এক অধ্যায়, যা পাওয়ার পর চাওয়ার আর কিছুই থাকে না। তোমার হাসিতে আমার সকাল আর তোমার টানে আমার পুরো রাত কেটে যায়। \n\nশুভ জন্মদিন!\nইতি, তোমার পাগল প্রেমিক..."; 
@@ -507,11 +508,20 @@
             pCont.appendChild(f);
         }
 
+        // --- FIXED AUDIO SWITCH LOGIC ---
+        // Moving switchAudio OUTSIDE the setTimeout so mobile browsers do not block it!
         function nextScene(num) {
             const cur = document.getElementById(`scene${num}`);
             const nextNum = num + 1;
             const nxt = document.getElementById(`scene${nextNum}`);
             
+            // Trigger audio explicitly on the click event (not inside the timeout)
+            if(nextNum === 8) {
+                switchAudio(bgMusic2);
+            } else if(nextNum === 9) {
+                switchAudio(bgMusic3);
+            }
+
             const animElements = cur.querySelectorAll('.anim-fade-up, .anim-pop-in');
             animElements.forEach(el => el.style.animation = 'none');
             
@@ -526,13 +536,6 @@
                     nextAnimElements.forEach(el => el.style.animation = '');
                     
                     setTimeout(() => nxt.style.opacity = '1', 50);
-
-                    // Audio Triggers
-                    if(nextNum === 8) {
-                        switchAudio(bgMusic2);
-                    } else if(nextNum === 9) {
-                        switchAudio(bgMusic3);
-                    }
 
                     if(nextNum === 3) startCounter();
                     if(nextNum === 9) initScratchCard();
@@ -558,7 +561,11 @@
 
         function checkPin() {
             if(document.getElementById('pinInput').value === SECRET_PIN) {
-                switchAudio(bgMusic1); // Explicitly triggers the first song
+                // Silently preload/unlock other audios for mobile to allow future switching
+                bgMusic2.load();
+                bgMusic3.load();
+                
+                switchAudio(bgMusic1); 
                 document.getElementById('audioToggle').style.display = 'flex';
                 nextScene(0);
             } else {
