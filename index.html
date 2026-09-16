@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday, My World</title>
+    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700&family=Galada&family=Hind+Siliguri:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
@@ -131,7 +132,7 @@
         .counter-num { font-size: clamp(22px, 4.5vw, 32px); color: #ff0844; font-weight: bold; font-family: 'Anek Bangla', sans-serif;}
         .counter-label { font-size: clamp(12px, 1.5vw, 15px); color: var(--text-light-pearl); opacity: 0.8; font-family: 'Hind Siliguri', sans-serif;}
 
-        /* Magic Gift Box & Popup */
+        /* Magic Gift Box */
         .magic-box-container { margin: 30px auto; cursor: pointer; position: relative; }
         
         .wish-popup { 
@@ -155,9 +156,9 @@
             box-shadow: 0 0 10px rgba(255, 8, 68, 0.8); font-family: 'Hind Siliguri', sans-serif;
         }
 
-        /* ENVELOPE: RESTORED TO BEAUTIFUL COMPACT SIZE */
+        /* 1. FIXED ENVELOPE & EXPANDING LETTER BOX */
         .envelope-wrapper { 
-            position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); /* Reverted Size */
+            position: relative; width: clamp(280px, 80vw, 450px); height: clamp(180px, 50vw, 280px); /* Reverted to beautiful original size */
             background: #2b1119; cursor: pointer; border-radius: 12px; 
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(255, 117, 140, 0.2); 
             transition: 0.5s; margin: 30px auto; 
@@ -195,16 +196,16 @@
 
         .envelope-wrapper.open .envelope-seal-logo { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
 
-        /* Letter Box - Fixed width/height with scrolling to ensure fit */
+        /* The Expanding Letter Box */
         .letter { 
-            position: absolute; bottom: 8px; left: 12px; width: calc(100% - 24px); height: 95%; 
+            position: absolute; bottom: 8px; left: 12px; width: calc(100% - 24px); 
+            height: 95%; /* Initial height hidden inside envelope */
             background: linear-gradient(135deg, #3a131f 0%, #240a12 100%); 
             border: 1px solid rgba(255, 117, 140, 0.3); z-index: 2; 
-            transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1); /* "all" makes the height transition smoothly */
             padding: clamp(20px, 4vh, 30px) clamp(15px, 3vw, 25px); 
             color: var(--text-light-pearl); border-radius: 8px 8px 0 0; 
-            overflow-y: auto; /* Scroll Safety added */
-            text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            overflow-y: auto; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
         }
         .letter-logo {
             font-family: 'Great Vibes', cursive; font-size: clamp(20px, 4.5vw, 30px);
@@ -213,7 +214,15 @@
             margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px solid rgba(255, 77, 109, 0.2); width: 85%;
         }
         .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 1; opacity: 0; }
-        .envelope-wrapper.open .letter { transform: translateY(clamp(-50%, -10vw, -70%)); z-index: 5; box-shadow: 0 -10px 30px rgba(0,0,0,0.6); }
+        
+        /* THIS makes the letter grow taller as it goes up */
+        .envelope-wrapper.open .letter { 
+            height: 170%; /* Expands its own height */
+            max-height: 70vh; /* Keeps it safe within mobile screen limits */
+            transform: translateY(-38%); /* Moves up appropriately */
+            z-index: 5; 
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.6); 
+        }
         #typewriter-text { font-size: clamp(13px, 2.4vw, 16px); line-height: 1.6; white-space: pre-wrap; font-family: 'Anek Bangla', sans-serif; }
 
         /* Quiz */
@@ -259,14 +268,17 @@
 </head>
 <body>
 
-    <audio id="bgMusic1" loop><source src="music1.mp3" type="audio/mpeg"></audio>
-    <audio id="bgMusic2" loop><source src="happy_birthday.mp3" type="audio/mpeg"></audio>
-    <audio id="bgMusic3" loop><source src="finale_music.mp3" type="audio/mpeg"></audio>
+    <!-- Audios -->
+    <!-- GitHub Files Configured As Requested -->
+    <audio id="bgMusic1" loop><source src="bgmusic1.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic2" loop><source src="bgmusic2.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic3" loop><source src="bgmusic3.mp4" type="audio/mp4"></audio>
     <audio id="tapSound"><source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_3d100067ea.mp3" type="audio/mpeg"></audio>
 
     <div class="audio-toggle" id="audioToggle" onclick="toggleMute()">🎵</div>
     <div id="particles"></div>
 
+    <!-- 1. Lock Screen -->
     <div class="scene active" id="scene0">
         <div class="lock-box anim-pop-in">
             <h2 class="font-galada grad-theme" style="font-size: clamp(28px, 6vw, 38px); margin-bottom: 5px;">আমাদের গোপন দুনিয়া ✨</h2>
@@ -276,6 +288,7 @@
         </div>
     </div>
 
+    <!-- 2. Entry -->
     <div class="scene" id="scene1">
         <svg class="cute-art anim-pop-in" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
             <path d="M50 70 C 40 70, 30 60, 30 50 C 30 40, 40 30, 50 30 C 60 30, 70 40, 70 50 C 70 60, 60 70, 50 70 Z" fill="none" stroke="#ff4d6d" stroke-width="3"/>
@@ -290,9 +303,10 @@
         <button class="btn anim-pop-in delay-2" onclick="nextScene(1)">গল্পটা শুরু হোক</button>
     </div>
 
+    <!-- 3. Love Scanner -->
     <div class="scene" id="scene2">
         <h2 class="font-hind grad-theme anim-fade-up" style="font-size: clamp(28px, 5vw, 38px); margin-bottom: 15px;">আমাদের মনের মিল কতটুকু?</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: clamp(15px, 3vw, 18px); margin-bottom: 30px; opacity: 0.9;">"বক্সের ভেতর চাপ দিয়ে ধরে রাখো..."</p>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: clamp(15px, 3vw, 18px); margin-bottom: 30px; opacity: 0.9;">"বক্সের ভেতর আঙুল ছুঁয়ে থাকো..."</p>
         <div class="scanner-box anim-pop-in delay-2" id="scannerBox">
             <div class="fingerprint">👆</div>
             <div class="scan-line" id="scanLine"></div>
@@ -301,6 +315,7 @@
         <button class="btn" id="btnScene2" onclick="nextScene(2)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 4. Counter -->
     <div class="scene" id="scene3">
         <h2 class="font-galada grad-theme-light anim-pop-in" style="font-size: clamp(30px, 6vw, 42px); margin-bottom: 10px;">একসাথে কাটানো সময়...</h2>
         <p class="font-hind anim-fade-up delay-1" style="color: var(--text-light-pearl); font-size: clamp(15px, 3vw, 18px); font-style: italic; opacity: 0.85;">"প্রতিটি মুহূর্ত যেন শতাব্দীর সমান মূল্যবান"</p>
@@ -315,9 +330,10 @@
         <button class="btn anim-pop-in delay-2" onclick="nextScene(3)">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 5. Magic Gift Box -->
     <div class="scene" id="scene4">
         <h2 class="font-hind grad-theme anim-fade-up" style="font-size: clamp(30px, 6vw, 40px); margin-bottom: 12px;">ম্যাজিক উপহার ✨</h2>
-        <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে ট্যাপ করো আর আমাদের ভালোবাসার বার্তাগুলো দেখো😍যতবার চাপ দিবা ততবার সুন্দর মেসেজ দেখতে পারবা"</p>
+        <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: clamp(15px, 3vw, 18px);">"বক্সটিতে ট্যাপ করো আর আমাদের ভালোবাসার বার্তাগুলো দেখো"</p>
         
         <div class="magic-box-container anim-pop-in delay-2" id="magicBoxWrap" onclick="showWish(event)">
             <svg width="150" height="150" viewBox="0 0 100 100">
@@ -347,6 +363,7 @@
         <button class="btn" id="btnScene4" onclick="nextScene(4)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 6. Envelope Scene -->
     <div class="scene" id="scene5">
         <h2 class="font-galada grad-theme-light anim-pop-in" style="font-size: clamp(30px, 6.5vw, 42px);">তোমার জন্য কিছু কথা...</h2>
         <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); margin-bottom: 10px; font-size: 16px; opacity: 0.9;">খামের ওপর ট্যাপ করো 💌</p>
@@ -369,17 +386,19 @@
         <button class="btn" id="btnScene5" onclick="nextScene(5)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 7. Quiz -->
     <div class="scene" id="scene6">
         <div class="quiz-box anim-pop-in">
             <h3 class="font-hind grad-theme" style="margin-bottom: 15px; font-size: clamp(22px, 4vw, 28px);">ছোট একটি পরীক্ষা! 🤭</h3>
             <p class="font-anek" style="margin-bottom: 25px; color: var(--text-light-pearl); font-size: 18px; opacity: 0.95;">আমার সবচেয়ে পছন্দের জিনিস কী?</p>
-            <button class="quiz-btn" onclick="handleQuiz(false)">রাগ করা</button>
+            <button class="quiz-btn" onclick="handleQuiz(false)">কফি বা চা</button>
             <button class="quiz-btn" onclick="handleQuiz(true)">তোমার ওই মিষ্টি হাসি ❤️</button>
             <p id="quiz-feedback" class="font-hind" style="margin-top: 20px; color: var(--text-bright-pink); font-weight: bold; font-size: 16px;"></p>
         </div>
         <button class="btn" id="btnScene6" onclick="nextScene(6)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 8. Magic Heart Burst -->
     <div class="scene" id="scene7">
         <h2 class="font-galada grad-theme anim-fade-up" style="font-size: clamp(30px, 6vw, 44px);">আমার হৃদয়ের স্পন্দন...</h2>
         <p class="font-anek grad-theme-light anim-fade-up delay-1" style="font-size: 17px;">"হার্টটিতে ট্যাপ করো, উড়ে যাক আমাদের সব ভালোবাসা"</p>
@@ -391,9 +410,10 @@
         <button class="btn" id="btnScene7" onclick="nextScene(7)" style="opacity: 0; pointer-events: none; margin-top:20px;">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 9. Video Cake -->
     <div class="scene" id="scene8">
-        <h2 class="font-hind grad-theme-light anim-fade-up" style="font-size: clamp(26px, 5.5vw, 36px); margin-bottom:8px;">শুভ জন্মদিন আমার রুহি! 🎉</h2>
-        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: 15px; opacity: 0.9;">"কেকটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
+        <h2 class="font-hind grad-theme-light anim-fade-up" style="font-size: clamp(26px, 5.5vw, 36px); margin-bottom:8px;">শুভ জন্মদিন আমার পৃথিবী! 🎉</h2>
+        <p class="font-anek anim-fade-up delay-1" style="color: var(--text-soft-pink); font-size: 15px; opacity: 0.9;">"ভিডিওটিতে ট্যাপ করো আর আমাদের ম্যাজিক জার্নি এগিয়ে নাও..."</p>
         
         <video id="birthdayVideo" class="cake-video anim-pop-in delay-2" autoplay loop muted playsinline onclick="blowCandle()">
             <source src="video.mp4" type="video/mp4">
@@ -402,6 +422,7 @@
         <button class="btn" id="btnScene8" onclick="nextScene(8)" style="opacity: 0; pointer-events: none;">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 10. Scratch Card (UPDATED TEXT FOR PRANK) -->
     <div class="scene" id="scene9">
         <h1 class="font-vibes grad-theme-light anim-pop-in" style="font-size: clamp(48px, 9vw, 80px); line-height: 1.2;">Happy Birthday! ✨</h1>
         <p class="font-galada grad-theme anim-fade-up delay-1" style="font-size: clamp(20px, 4.5vw, 28px); margin-bottom: 20px;">"তুমি হাসলে আমার পুরো পৃথিবী আলো হয়ে যায়..."</p>
@@ -415,10 +436,11 @@
         <button class="btn anim-fade-up delay-2" id="btnScene9" onclick="nextScene(9)">পরবর্তী পেজ</button>
     </div>
 
+    <!-- 11. DUA PAGE -->
     <div class="scene" id="scene10">
         <div id="duaInitial" class="anim-pop-in" style="cursor:pointer;" onclick="openDuaCard()">
-            <h1 class="font-galada grad-theme" style="font-size: clamp(35px, 8vw, 55px); margin-bottom:10px;">তোমার হাসিতেই আমাদের সুখ 🥰🌹</h1>
-            <p class="font-anek" style="color: var(--text-soft-pink); font-size: 16px; margin-bottom:20px;">হাতটিতে ট্যাপ করো</p>
+            <h1 class="font-galada grad-theme" style="font-size: clamp(35px, 8vw, 55px); margin-bottom:10px;">আমাদের অন্তরের ফরিয়াদ ও ভালোবাসা 🌹</h1>
+            <p class="font-anek" style="color: var(--text-soft-pink); font-size: 16px; margin-bottom:20px;">বিশেষ মোনাজাতটি দেখতে নিচে হাতটিতে ট্যাপ করো</p>
             <div style="font-size: 80px; filter: drop-shadow(0 0 20px rgba(255, 8, 68, 0.5)); animation: pulseHeart 1.5s infinite alternate;">🤲</div>
         </div>
         
@@ -438,7 +460,7 @@
 
     <script>
         const SECRET_PIN = "1924";
-        const START_DATE = new Date("2025-08-20T00:00:00"); // For 1 year 27 days relative to today
+        const START_DATE = new Date("2025-08-20T00:00:00"); 
         
         const LETTER_CONTENT = "আমার হৃদস্পন্দন,\n\nচোখ বন্ধ করলেই তোমার মিষ্টি মুখটা ভেসে ওঠে। তুমি আমার জীবনের এমন এক অধ্যায়, যা পাওয়ার পর চাওয়ার আর কিছুই থাকে না। তোমার হাসিতে আমার সকাল আর তোমার টানে আমার পুরো রাত কেটে যায়। \n\nশুভ জন্মদিন!\nইতি, তোমার পাগল প্রেমিক..."; 
         
